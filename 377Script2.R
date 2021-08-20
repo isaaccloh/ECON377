@@ -58,6 +58,7 @@ corrwageeduc = covwageeduc/(sdwage * sdeduc)
 corrwageeduc = cor(mydata$wage, mydata$educ)
 
 ####################
+##Supplementary things:
 
 #Histogram exercise A.1
 #Create a histogram of years of education with title "Histogram of Education" and x-axis label "Years of Education"
