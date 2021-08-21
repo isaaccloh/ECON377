@@ -79,7 +79,8 @@ hist_fun = function(n) {
  curve(dnorm(x), add = TRUE, col = "blue")
 }
 
-#Define function to look at correlation between variables and alcohol abuse in alcohol dataset
+#Define function to look at correlation between variables and alcohol abuse in alcohol dataset so we can 
+#visualize correlation in class
 attach(alcohol) #This makes R fix the alcohol dataset in its memory
 
 plt_fun = function(varname) {
