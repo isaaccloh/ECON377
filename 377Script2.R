@@ -60,6 +60,10 @@ corrwageeduc = cor(mydata$wage, mydata$educ)
 ####################
 ##Supplementary things##
 
+#Given a command like mean, you can apply it to all variables in a dataset with the
+#command sapply(mydata, mean), e.g.:
+sapply(wage1, mean)
+
 #Histogram exercise A.1
 #Create a histogram of years of education with title "Histogram of Education" and x-axis label "Years of Education"
 hist(mydata$educ, main = "Histogram of Education", xlab = "Years of Education")
