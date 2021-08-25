@@ -59,4 +59,21 @@ var(X) #Calculates the sample variance of vector X
 mean(X**2) - mean(X)**2 #This is how you could use the formula Var(X) = E(X^2) - E(X)^2
 #Remember that you'll have to define X correctly to get this to work
 
+####################
 
+#OLS example: plots OLS regresion line and the line E[Y|X] that it's trying to estimate
+
+####################
+
+n = 100 #sample size
+sigma = 10 #Noise in the model
+beta0 = 2
+beta1 = 2
+X = rnorm(n)
+U = rnorm(n, sd = sigma)
+Y = beta0 + beta1 * X + U
+plot(X, Y, main = "OLS regression line", xlab = "X", ylab = "Y")
+abline(lm(Y ~ X), col = "blue")
+curve(beta0 + beta1 * x, add = TRUE)
+legend(1, 0, legend=c("OLS (regression) line", "E[Y|X]"),
+       col=c("blue", "black"), lty=1, cex=1.2)
