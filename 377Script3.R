@@ -1,3 +1,5 @@
+#For 8/25/2021
+
 # Clear environment
 rm(list=ls())
 
@@ -6,26 +8,6 @@ setwd("C:/Users/lohi/OneDrive - UNC-Wilmington/Desktop/Fun times with metrics")
 
 #load Wooldridge package
 library(wooldridge)
-
-####################
-
-#Exercise 3.2
-#First, calculate beta0 and beta1 using our formulas
-beta1 = cov(wage1$educ , wage1$wage)/(var(wage1$educ))
-beta0 = mean(wage1$wage) - mean(wage1$educ) * beta1
-
-#Compare these with the coefficients we would get with R's inbuilt command
-lm(wage1$wage ~ wage1$educ)
-
-#Another way to compute the regression without the annoying $ signs
-lm(wage ~ educ, data = wage1)
-
-#How to view more detail about the regression
-#First, save it as reg
-reg = lm(wage ~ educ, data = wage1)
-
-#Then, use the summary() function
-summary(reg)
 
 ####################
 
@@ -58,6 +40,9 @@ var(X) #Calculates the sample variance of vector X
 #Question 22
 mean(X**2) - mean(X)**2 #This is how you could use the formula Var(X) = E(X^2) - E(X)^2
 #Remember that you'll have to define X correctly to get this to work
+#This only works for X that are uniformly distributed, i.e. that have equal probabilities
+#of equaling the values 12, 234, etc. Can you work through the 
+#population variance formula to find out why?
 
 ####################
 
