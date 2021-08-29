@@ -28,3 +28,24 @@ reg = lm(wage ~ educ, data = wage1)
 
 #Then, use the summary() function
 summary(reg)
+
+####################
+
+#Formula to illustrate Assumption 3.2
+
+#install.packages('lattice') #Uncomment this and do this once
+
+library(lattice)
+
+#Specify beta0 and beta1
+beta0 = 0
+beta1 = 1
+
+#Command to plot density of data
+x = seq(-5, 5, length = 100)
+y = seq(-5, 5, length = 100)
+grid = expand.grid(x = x, y = y)
+grid$z = dnorm(grid$x, sd = 3) * dnorm(grid$y - beta0 - beta1*grid$x)
+levelplot(z ~ x * y, grid, xlab="X",
+          ylab="Y", main="Data under Assumption 3.1",
+          colorkey = TRUE)
