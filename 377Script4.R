@@ -60,7 +60,7 @@ library(lattice)
 
 #Specify beta0 and beta1
 beta0 = 0
-beta1 = 1
+beta1 = -2
 
 #Command to plot density of data
 x = seq(-5, 5, length = 100)
