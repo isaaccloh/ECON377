@@ -20,7 +20,7 @@ reg1 = lm(wage ~ educ, data = wage1)
 
 #Set hbeta0 and hbeta1 equal to the OLS coefficients
 hbeta0 = coefficients(reg1)[1] 
-hbeta1 = coefficients(reg2)[2]
+hbeta1 = coefficients(reg1)[2]
 
 #Create a new variable equal to the residuals
 mydata$resid = mydata$wage - hbeta0 - hbeta1 * mydata$educ
