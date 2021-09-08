@@ -76,3 +76,26 @@ View(crime1)
 nrow(crime1) #Alternate way to count number of observations
 
 #Question 14
+ls(crime1) #Using the ls() command
+ncol(crime1) #Directly tells us how many variables are in crime1
+
+#Question 15
+mydata = crime1 #Creating a new dataset equal to crime1
+mean(mydata$narr86) 
+
+#Question 16
+mydata$narr86sq = mydata$narr86**2 #Creating new variable named narr86sq in mydata
+mean(mydata$narr86sq)
+
+#Question 17
+reg = lm(narr86sq ~ inc86, data = mydata)
+reg #Allows us to view coefficients
+reg$coefficients #Alternate way to view coefficients. 
+reg$coefficients[2] #The slope coefficient associated with inc86
+
+#Question 18
+ssr = sum(reg$residuals**2)
+
+#Question 19
+hbeta1 = 2/(2**2)
+150 - hbeta1 * 20
