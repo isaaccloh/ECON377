@@ -13,7 +13,7 @@ library(wooldridge)
 #Calculating SSR from regression of wage on educ in wage1 (repeating Ex 4.2)
 mydata = wage1 
 reg1 = lm(wage ~ educ, data = wage1)
-ssr = sum(reg1$residuals)**2
+ssr = sum(reg1$residuals**2)
 
 ####################
 #Exercise 4.4 (Continues Exercise 4.2)
