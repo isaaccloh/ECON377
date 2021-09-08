@@ -20,7 +20,9 @@ Y = exp(1 + 2 * (39 - 38.231))
 sin(Y**2) - cos(2) * log(31 * Y)
 
 #Question 4
-X = c(4,9,2,10,7,7,7,9,1,3,4,10,2,3,8,5,1,8,5,10,1,2,5,10,10,4,10,5,7,2)
+X = c(4,9,2,10,7,7,7,9,1,3,4,10,
+      2,3,8,5,1,8,5,10,1,2,5,10,
+      10,4,10,5,7,2)
 length(X)
 
 #Question 5
@@ -33,7 +35,9 @@ varX = var(X)
 sqrt(varX)
 
 #Question 8 
-Y = c(6,2,2,7,6,3,3,7,7,6,3,10,10,5,3,1,9,1,6,8,10,6,2,7,10,4,7,2,4,3)
+Y = c(6,2,2,7,6,3,3,7,7,6,3,10,10,
+      5,3,1,9,1,6,8,10,6,2,7,10,4,
+      7,2,4,3)
 cov(X,Y)
 
 #Question 9
@@ -64,8 +68,8 @@ EY = sum(Yvec * Pvec)
 EXY
 
 #Question 12
-covXY = EXY - EX * EY #Covariance
-varX = EXsq - EX**2 #Variance of X
+covXY = EXY - EX * EY #Covariance = E[XY] - E[X] * E[Y]
+varX = EXsq - EX**2 #Variance of X = E[X**2] - E[X]**2
 varY = EYsq - EY**2 #Variance of Y
 
 corrXY = covXY / (sqrt(varX) * sqrt(varY))
@@ -97,5 +101,5 @@ reg$coefficients[2] #The slope coefficient associated with inc86
 ssr = sum(reg$residuals**2)
 
 #Question 19
-hbeta1 = 2/(2**2)
-150 - hbeta1 * 20
+hbeta1 = 2/(2**2) #hbeta1 = cov(X,Y)/(var(X))
+150 - hbeta1 * 20 #hbeta0 = ybar - xbar * hbeta1
