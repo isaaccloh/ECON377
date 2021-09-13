@@ -1,0 +1,325 @@
+---
+title: "377 Commands"
+author: "Isaac Loh"
+date: "9/8/2021"
+output: pdf_document
+---
+
+## R commands for 377
+
+### Getting started
+
+To get started in RStudio, hit Ctrl+Shift+N to open up a new R script, or use File->New File->R Script.
+
+In this class, a good way to start your scripts is with the following three commands: 
+
+```{r eval = FALSE}
+# Clear environment
+rm(list=ls())
+
+# Set working directory
+setwd("your directory here")
+
+#Load the Wooldridge package
+library(wooldridge)
+```
+
+In order, these commands clear R's working memory, set the working directory to your chosen location, and load the Wooldridge package (containing useful datasets). 
+
+### Getting help 
+
+If you want to get get help with any command, you can type a ? before that command, as in the following: 
+```{r}
+?mean
+```
+You can also use the `help()` command, as in
+```{r}
+help(mean)
+```
+
+### Summary Statistics
+
+In this class we will often use various summary statistics to evaluate a dataset. Now that the Wooldridge package is loaded, we can use these summary statistics to break down datasets, and their constituent variables. The <tt>summary</tt> command is a good way to succinctly express the content of a dataset. Let's try it with a dataset called <tt>cars</tt> included with R.
+
+```{r}
+summary(cars)
+```
+
+Evidently, the <tt>summary</tt> command tells R to display the quartiles, maximum values, minimum values, and medians for all of the variables in a dataset. If we want to view a dataset, we can use the command:
+```{r, eval = FALSE}
+View(cars)
+```
+(case sensitive).
+
+Given a sample for a random variable $X$, R can easily compute quantities like the sample mean of $X$ ($\bar{X}$), the sample variance of $X$ ($S_X^2$), and the sample standard deviation of $X$ ($S_X$). **The commands in this section are only valid for sample quantities (e.g. sample means, covariances, etc).** Here is an illustration of these commands for the variable <tt>wage1$educ</tt> (note that the \$ indicates that the variable name is <tt>educ</tt>, and it can be found inside the dataset named <tt>wage1</tt> found in the Wooldridge package).
+```{r echo = FALSE}
+library(wooldridge)
+```
+
+```{r}
+mean(wage1$educ)
+
+var(wage1$educ)
+
+sd(wage1$educ)
+```
+We can also find the covariance and correlation *between* two random variables $X$ and $Y$ using the following commands, evaluated on <tt>wage1\$educ</tt> and <tt>wage1\$wage</tt>
+
+```{r}
+cov(wage1$wage, wage1$educ)
+cor(wage1$wage, wage1$educ)
+```
+
+Note that R calculates that, in the <tt>wage1</tt> dataset, the sample covariance between wage and education (`r cov(wage1$wage, wage1$educ)`) is positive, which makes sense. The sample covariance determines the sign of the correlation between two variables by the formula 
+\begin{align*}
+\rho_{XY} = \frac{S_{XY}}{S_X S_Y},
+\end{align*}
+so we know that the sample correlation between $X$ and $Y$ must also be positive (it's `r cor(wage1$wage, wage1$educ)`).
+
+### Manipulating data
+
+R can help you manipulate data and compute quantities based on the data. Suppose we have a random sample of die rolls $X$ given by $\{X_i: i = 1, \ldots, 5\} = \{1,2,4,2,6\}$. This tells us that we have a sample size of $n = 5$, and that the observations we received were 1,2,4,2,6. We can enter this into R as a *vector* (ordered list of numbers):
+```{r}
+c(1,2,4,2,6)
+```
+The `c` command combines its arguments to form a vector, which is just an ordered list of numbers. You cannot enter a list of numbers into R in parentheses without the `c`. Note that if we want to enter a string of successive numbers, we can use a colon with the start and end numbers. For example: 
+```{r}
+c(1:5)
+c(6:2)
+```
+We can define a vector `X` to equal our data (which will simplify handling the data later on) using the syntax:
+```{r}
+X = c(1,2,4,2,6)
+```
+When you present R with a command of the form `a = b`, R will create a new object `a` equal to `b`, or redefine `a` to be equal to `b` if `a` already exists.
+
+Now that we have `X` defined, we can use it interchangeably with what we set it equal to. For instance,
+```{r}
+mean(c(1,2,4,2,6))
+```
+which calculates the sample mean of our die rolls, will give the same result as 
+```{r}
+mean(X)
+```
+which is much easier to type. We can also perform basic arithmetic with vectors:
+```{r}
+X
+X + 1
+X * 2 
+X ** 2
+exp(X)
+```
+Given a new vector `Y` of the same dimension as `X`, we can add `X + Y`, subtract `X - Y`, multiply `X * Y`, and divide `X / Y`:
+```{r}
+Y = c(2,4,3,1,5)
+X + Y 
+X - Y 
+X * Y 
+X / Y
+```
+
+### Manipulating data within datasets
+
+R allows us to manipulate data within datasets just as we can with vectors. We can create new datasets given existing data using an `=`:
+```{r}
+mydata = wage1
+```
+To view a list of the random variables in a dataset, use the `ls()` command:
+```{r}
+ls(mydata)
+```
+To count the number of variables in a dataset, use the `ncol()` command. To count the number of observations in a dataset, use the `nrow` command:
+```{r}
+ncol(mydata)
+nrow(mydata)
+```
+This tells us that, in the dataset `mydata`, there are `r `ncol(mydata)` variables and $n = $ `r nrow(mydata)` observations. 
+
+To create a new variable inside `mydata`, use the `$` notation in conjunction with an `=`:
+```{r}
+mydata$new_variable = mydata$wage
+```
+After running this command, we will have a new variable (here, titled `new_variable`) created inside of `mydata`:
+```{r}
+ls(mydata)
+```
+We can perform arithmetic operations on variables, or between variables, just as we did with vectors:
+```{r, eval = FALSE}
+mydata$wage + 1
+mydata$wage * 2
+mydata$wage**2
+mydata$wage + mydata$educ 
+```
+and we can define new variables using these operations:
+```{r}
+mydata$wagesq = mydata$wage**2
+```
+
+### Using R to compute population parameters
+
+\renewcommand{\P}[1]{\mathrm{P}\left( #1 \right)}
+\newcommand{\E}[1]{\mathrm{E}\left[ #1 \right]}
+\newcommand{\var}[1]{\mathrm{Var} \left( #1 \right)}
+\newcommand{\cov}[1]{\mathrm{Cov} \left( #1 \right)}
+\newcommand{\cor}[1]{\mathrm{Cor} \left( #1 \right)}
+\newcommand{\sd}[1]{\mathrm{sd} \left( #1 \right)}
+\newcommand{\hbeta}{\hat{\beta}}
+\newcommand{\SSR}{\mathrm{SSR}}
+\newcommand{\SST}{\mathrm{SST}}
+\newcommand{\SSE}{\mathrm{SSE}}
+
+
+R's usefulness as a calculator also allows us to compute population level parameters using joint distribution tables. Suppose that we have the joint distribution specified in Table \ref{Tab:1} for random variables $X$ and $Y$ (note that, because we have a joint distribution given to us, we are dealing with a population level question):
+
+\begin{table}
+\centering
+\caption{}
+\label{Tab:1}
+\begin{tabular}{l l l l l l}
+$\P{X = x, Y = y}$ & 1/4 & 1/2 & 1/12 & 1/12 & 1/12 \\ \hline 
+$x$ & 1 & 2 & 3 & 4 & 5 \\
+$y$ & 6 & 5 & 4 & 3 & 2 
+\end{tabular}
+\end{table}
+
+The first step to handle computing population level questions would be to input the probabilities as a vector, and then the set of values of $x$ and $y$ as their own vectors, *preserving the order in which they appear in the joint distribution table*.
+
+```{r}
+probvec = c(1/4, 1/2, 1/12, 1/12, 1/12)
+xvec = c(1, 2, 3, 4, 5)
+yvec = c(6, 5, 4, 3, 2)
+```
+
+The formula for e.g. the expected value $\E{X}$ of $X$ is given by 
+\begin{align} \label{E:exp}
+\sum_x x \cdot \P{X = x}.
+\end{align}
+Using our definitions, we can get a new vector containing as entries the products $x \cdot \P{X =x}$ using the `*` operator as in the following command:
+```{r}
+xvec * probvec
+```
+According to formula \eqref{E:exp}, the only remaining step to find $\E{X}$ is to take the sum of the vector above. This can be done using the `sum()` command, which sums up the values of a list of numbers (be it a vector or a column of a dataset):
+```{r}
+sum(xvec * probvec)
+```
+Hence, in this example, $\E{X} =$ `r sum(xvec * probvec)` 
+
+Likewise, to get the expected value $\E{XY}$ of the random variable $XY$, we would create a new row in our probability distribution table containing products of the form $xy$, as in Table \ref{Tab:2}. 
+\begin{table}
+\centering
+\caption{}
+\label{Tab:2}
+\begin{tabular}{l l l l l l}
+$\P{X = x, Y = y}$ & 1/4 & 1/2 & 1/12 & 1/12 & 1/12 \\ \hline 
+$x$ & 1 & 2 & 3 & 4 & 5 \\
+$y$ & 6 & 5 & 4 & 3 & 2 \\
+$xy$ & 6 & 10 & 12 & 12 & 10
+\end{tabular}
+\end{table}
+This new row (vector) can be obtained in R using the following command:
+```{r}
+xvec * yvec
+```
+The last step to evaluate for $\E{XY}$ would be to multiply the elements in this vector by the vector of probabilities, and sum the entries. We can do this in the following way:
+```{r}
+sum((xvec * yvec) * probvec)
+```
+
+Hence, $\E{XY} =$ `r sum(xvec * yvec * probvec)`. The commands we could use to compute several quantities we care about in this class are summarized below:
+```{r}
+EX = sum(xvec * probvec)
+EY = sum(yvec * probvec)
+EXsq = sum(xvec**2 * probvec)
+EYsq = sum(yvec**2 * probvec)
+EXY = sum(xvec * yvec * probvec)
+```
+These commands calculate $\E{X}$, $\E{Y}$, $\E{X^2}$, $\E{Y^2}$, and $\E{XY}$, respectively, using the information contained in Table \ref{Tab:1}. The values are summarized below:
+
+Population parameter        |           Computed value
+----------------------------|---------------------------
+`EX`                        |   `r EX`
+`EY`                        |   `r EY`
+`EXsq`                      |`r EXsq`
+`EYsq`                      | `r EYsq`
+`EXY`                       |   `r EXY`
+
+Using the parameters that we just calculated, we can now determine the variances of $X$ and $Y$, as well as their covariance and correlation. Recall that:
+\begin{align*}
+\var{X} &= \E{X^2} - \E{X}^2 \\
+\sd{X} & = \sqrt{\var{X}} \\
+\cov{X, Y} & = \E{XY} - \E{X} \cdot \E{Y}\\
+\cor{X,Y} & = \frac{\cov{X,Y}}{\sd{X} \sd{Y}}
+\end{align*}
+Using these formulas, we can use the following commands to get $\var{X}$, $\sd{X}$, $\var{Y}$, $\sd{Y}$, $\cov{X,Y}$, and $\cor{X,Y}$ respectively:
+```{r}
+varX = EXsq - EX**2 
+sdX = sqrt(varX)
+varY = EYsq - EY**2
+sdY = sqrt(varY)
+covXY = EXY - EX * EY 
+corXY = covXY / (sdX * sdY)
+```
+Population parameter        |           Computed value
+----------------------------|---------------------------
+`varX`                        |   `r varX`
+`sdX`                        |   `r sdX`
+`varY`                      |`r varY`
+`sdY`                      | `r sdY`
+`covXY`                       |   `r covXY`
+`corXY`                       |   `r corXY`
+
+Note that the correlation is always between $-1$ and $1$. 
+
+### Linear regression 
+
+#### Simple linear regression
+
+Given two lists of numbers of equal length, be they vectors or variables in a dataset, R can easily regress one (the dependent variable) on the other. The command to do this is `lm`:
+```{r}
+lm(wage1$wage ~ wage1$educ)
+```
+Instead of using `$` notation every time a variable is used inside the `lm()` command, one can just use the option to specify the dataset name at the end of the command:
+```{r}
+lm(wage ~ educ, data = wage1)
+```
+When we use the `lm()` command for a simple linear regression, R prints out the estimated intercept coefficient $\hat{\beta}_0$ (in this case, `r lm(wage ~ educ, data = wage1)$coefficients[1]`) and the estimated slope coefficient $\hat{\beta}_1$ (in this case, `r lm(wage ~ educ, data = wage1)$coefficients[2]`). It also computes many other quantities related to the regression which we can access by saving the regression output. For example, if we wanted to save the regression as `reg`, we would type
+```{r}
+reg = lm(wage ~ educ, data = wage1)
+```
+We can now access features of our regression output using the `$` syntax. For instance:
+```{r}
+reg$coefficients
+```
+returns $\hbeta_0$ and $\hbeta_1$. 
+```{r}
+reg$coefficients[1]
+```
+returns the first element of the coefficient vector, which is $\hbeta_0$. 
+```{r}
+reg$coefficients[2]
+```
+returns the second element of the coefficient vector, which is $\hbeta_1$. 
+```{r, eval = FALSE}
+reg$residuals
+```
+returns a list of the *residuals* from the regression, so the sum of squared residuals can be found using the command
+```{r}
+sum(reg$residuals**2)
+```
+This command tells us that, for this regression, $\SSR=$ `r sum(reg$residuals**2)`. 
+R also retains the *predicted*, or *fitted*, values for $Y$, denoted $\hat{Y}$. These are given by the formula
+\begin{align*}
+\hat{Y}_i = \hbeta_0 + \hbeta_1 X_i,
+\end{align*}
+and can be accessed with the command
+```{r eval = FALSE}
+reg$fitted.values
+```
+We can also conveniently get a more detailed breakdown of the regression results by using the `summary()` command:
+```{r}
+summary(reg)
+```
+The summary of our regression will contain more useful information. For instance, we can get the $R^2$ of the regression with the command
+```{r}
+summary(reg)$r.squared
+```

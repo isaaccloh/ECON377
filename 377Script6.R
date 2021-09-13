@@ -59,3 +59,20 @@ reg3 = lm(log(wage) ~ educ, data = wage1)
 
 #log-log regression of salary on sales using ceosal1
 reg4 = lm(log(salary) ~ log(sales), data = ceosal1)
+
+####################
+#Illustration of R squared
+
+n = 100 #sample size
+sigma = 2 #Noise in the model
+beta0 = 1
+beta1 = 1
+X = rnorm(n) #Randomly generate X
+U = rnorm(n, sd = sigma) #Randomly generate U
+Y = beta0 + beta1 * X + U #Set Y according to our econometric model
+reg = lm(Y ~ X)
+plot(X, Y, main = paste("R^2 =", toString(summary(reg)$r.squared)), xlab = "X", ylab = "Y")
+abline(lm(Y ~ X), col = "blue")
+curve(beta0 + beta1 * x, add = TRUE)
+legend(1, 0, legend=c("OLS (regression) line", "E[Y|X]"),
+       col=c("blue", "black"), lty=1, cex=1.2)
