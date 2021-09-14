@@ -1,4 +1,4 @@
-#For 9/8/2021
+#For 9/13/2021
 
 # Clear environment
 rm(list=ls())
@@ -16,7 +16,7 @@ reg1 = lm(wage ~ educ, data = wage1)
 ssr = sum(reg1$residuals**2)
 
 ####################
-#Exercise 4.4 (Continues Exercise 4.2)
+#Exercise 4.5 (Continues Exercise 4.2)
 
 #Calculate the SST value for wage
 sst = sum((mydata$wage - mean(mydata$wage))^2)
@@ -63,8 +63,8 @@ reg4 = lm(log(salary) ~ log(sales), data = ceosal1)
 ####################
 #Illustration of R squared
 
-n = 100 #sample size
-sigma = 2 #Noise in the model
+n = 1000 #sample size
+sigma = 0.2 #Noise in the model
 beta0 = 1
 beta1 = 1
 X = rnorm(n) #Randomly generate X
