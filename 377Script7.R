@@ -14,6 +14,14 @@ reg3 = lm(log(wage) ~ educ, data = wage1)
 #log-log regression of salary on sales using ceosal1
 reg4 = lm(log(salary) ~ log(sales), data = ceosal1)
 
+####################
+
+#Exercise 5.2
+
+#regress math10 on lnchprg
+reg1 = lm(math10 ~ lnchprg, data = meap93)
+
+summary(reg1)
 
 ####################
 #Illustration of asymptotic distribution of OLS estimates
