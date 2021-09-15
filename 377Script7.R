@@ -31,6 +31,7 @@ n = 10 #Set sample size
 M = 100 #Number of experiments
 beta0 = 1
 beta1 = 1
+sigma = 2 #Standard deviation of U, i.e. sigma
 
 #Slope coefficient vector
 slopevec = rep(0,M)
@@ -40,7 +41,7 @@ slopevec = rep(0,M)
 for (i in 1:M) {
   
   #Generate data
-  Uvec = rnorm(n, mean = 0, sd = 2)
+  Uvec = rnorm(n, mean = 0, sd = sigma)
   Xvec = rnorm(n, mean = 0, sd = 2)
   Yvec = beta0 + beta1 * Xvec + Uvec
   
