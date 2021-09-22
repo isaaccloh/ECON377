@@ -1,4 +1,4 @@
-#For 9/20/2021
+#For 9/22/2021
 
 # Clear environment
 rm(list=ls())
@@ -44,17 +44,17 @@ summary(reg3)
 #This time, dividing by the standard errors (look at how the distributions change with n)
 ####################
 
-n = 100 #Set sample size
-M = 100 #Number of experiments
+n = 5 #Set sample size
+M = 5000 #Number of experiments
 beta0 = 1
-beta1 = 1
+beta1 = 0
 sigma = 2 #Standard deviation of U, i.e. sigma
 
 #Slope coefficient vector
 slopevec = rep(0,M)
 
 #Should we divide by standard errors?
-divide_option = TRUE
+divide_option = FALSE
 
 #Monte Carlo
 
@@ -79,7 +79,27 @@ for (i in 1:M) {
   }
 }
 
+#Plot the simulation results with overlaid t density and Gaussian density
+if (divide_option){
 hist(slopevec, main = paste("Histogram of 
-                            beta1 estimates with n =", 
+                           t values with n =", 
                             toString(n)),
-     xlim = c(beta1 - 2, beta1 + 2))
+     breaks = ceiling(M**(2/5)),
+     xlim = c(beta1 - 3, beta1 + 3), freq = FALSE, ylim = c(0, dnorm(0) + 0.05))
+} else {
+hist(slopevec, main = paste("Histogram of 
+                         beta1 estimates with n =", 
+                            toString(n)),
+     breaks = 20,
+     xlim = c(beta1 - 3, beta1 + 3), freq = FALSE, ylim = c(0, dnorm(0) + 0.05))
+}
+ 
+df = n - 2
+
+curve(dt(x - beta1, df = df), from = beta1 - 4, to = beta1 + 4, add = TRUE, col = "blue")
+
+curve(dnorm(x - beta1), from = beta1 - 4, to = beta1 + 4, add = TRUE, col = "red")
+
+legend(-2, 0.3, legend=c(paste("t distribution with n =", 
+                               toString(n)), "Normal distribution"),
+       col=c("blue", "red"), lty=1, cex=1.2)

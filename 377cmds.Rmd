@@ -315,6 +315,12 @@ and can be accessed with the command
 ```{r eval = FALSE}
 reg$fitted.values
 ```
+Using the equation for e.g. the SSE, which is equal to $\sum_{i = 1}^n (\hat{Y}_i - \bar{Y})^2$, we can calculate the explained sum of squares using the command
+```{r eval = FALSE}
+sum((reg$fitted.values - ybar)**2), 
+```
+where `ybar` is the sample average of the dependent variable.
+
 We can also conveniently get a more detailed breakdown of the regression results by using the `summary()` command:
 ```{r}
 summary(reg)
@@ -322,4 +328,24 @@ summary(reg)
 The summary of our regression will contain more useful information. For instance, we can get the $R^2$ of the regression with the command
 ```{r}
 summary(reg)$r.squared
+```
+The summary command allows us to view the standard errors, $t$-values, and $p$-values associated with a regression. These are stored in an array called `summary(reg)$coefficients:
+```{r}
+summary(reg)$coefficients
+```
+To get the vector of standard errors, choose the second column of this matrix:
+```{r}
+summary(reg)$coefficients[,2]
+```
+To get the vector of $t$-values, choose the third column of the matrix:
+```{r}
+summary(reg)$coeffcients[,3]
+```
+Finally, to get the vector of $p$-values, choose the fourth column of the matrix:
+```{r}
+summary(reg)$coefficients[,4]
+```
+You can also pick out individual elements of these columns, e.g.\ by using:
+```{r}
+summary(reg)$coefficients[2,4]
 ```
