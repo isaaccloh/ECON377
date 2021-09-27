@@ -54,7 +54,7 @@ sigma = 2 #Standard deviation of U, i.e. sigma
 slopevec = rep(0,M)
 
 #Should we divide by standard errors?
-divide_option = FALSE
+divide_option = TRUE
 
 #Monte Carlo
 
