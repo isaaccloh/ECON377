@@ -1,4 +1,4 @@
-#For 9/27
+#For 9/27/2021
 
 # Clear environment
 rm(list=ls())
@@ -22,62 +22,23 @@ reg_no_ovb = lm(log(crime) ~ log(police) + enroll + priv, data = campus)
 #a college's immediate area is (more dangerous -> more crimes and more officers)
 
 ####################
-#Exercise 7.4
+#Plotting a multiple regression model with k = 2 (two independent variables)
 
-#Using GPA1, regress colGPA on hsGPA and ACT
-reg1 = lm(colGPA ~ hsGPA + ACT, data = gpa1)
+#install.packages('car') #Do this once
+#install.packages('rgl') #Do this once
+library(car)
+library(rgl)
 
-summary(reg1)
+#Example 7.1 illustration
+scatter3d(log(crime) ~ log(police) + enroll, data = campus)
 
-#regress colGPA on only ACT
-reg2 = lm(colGPA ~ ACT, data = gpa1)
+#Illustration with apple dataset of omitted variables bias
+plot(econmath$act, econmath$colgpa, xlab = 'ACT score', ylab = 'College GPA', 
+     main = 'College GPA vs ACT scores')
+abline(lm(colgpa ~ act, data = econmath)) #Simple linear regression
 
-summary(reg2)
+scatter3d(colgpa ~ hsgpa + act, data = econmath, zlab = 'ACT',
+          xlab = 'HS GPA', ylab = 'College GPA') #Multiple linear regression
 
-#Compare the coefficient sizes (on ACT)
-reg2$coefficients[2]/reg1$coefficients[3]
-
-####################
-#Exercise 7.5
-
-#regress log(wage) on educ, exper, and tenure in wage1
-reg3 = lm(log(wage) ~ educ + exper + tenure, data = wage1)
-
-summary(reg3)
-
-#comparing with regression on educ alone
-reg4 = lm(log(wage) ~ educ, data = wage1)
-
-#Compare the coefficient sizes (on educ)
-reg4$coefficients[2]/reg3$coefficients[2]
-
-####################
-#Exercise 7.7
-
-#Regress hsGPA on ACT
-reg5 = lm(hsGPA ~ ACT, data = gpa1)
-
-#Save coefficient on ACT as tdelta1
-tdelta1 = reg5$coefficients[2]
-
-#Save coefficient on ACT in simple regression as tbeta1
-tbeta1 = reg2$coefficients[2]
-
-#Save coefficients on ACT, hsGPA in multiple regression as hbeta1, hbeta2 resp
-hbeta1 = reg1$coefficients[3]
-hbeta2 = reg1$coefficients[2]
-
-#Does tbeta1 = hbeta1 + hbeta2 * tdelta1?
-print(c(tbeta1, hbeta1 + hbeta2 * tdelta1))
-
-####################
-#Exercise 7.8
-
-reg6 = lm(narr86 ~ pcnv + ptime86 + qemp86, data = crime1)
-
-reg7 = lm(narr86 ~ pcnv + avgsen + ptime86 +
-            + qemp86, data = crime1)
-
-summary(reg6)
-
-
+#Note that the slope associated with ACT decreases significantly once we control
+#for high school GPA!
