@@ -25,6 +25,13 @@ summary(reg2)
 #Compare the coefficient sizes (on ACT)
 reg2$coefficients[2]/reg1$coefficients[3]
 
+# Visualize this regression
+library(car)
+library(rgl)
+
+scatter3d(colGPA ~ hsGPA + ACT, data = gpa1)
+
+
 ####################
 #Exercise 8.2
 
