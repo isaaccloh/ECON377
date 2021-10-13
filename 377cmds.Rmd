@@ -349,3 +349,19 @@ You can also pick out individual elements of these columns, e.g.\ by using:
 ```{r}
 summary(reg)$coefficients[2,4]
 ```
+
+#### Multiple regression
+
+Estimating multiple regression models in R is just a matter of adding more variables to the `lm()` command. For instance, if we want to estimate the regression model:
+\[
+wage = \beta_0 + \beta_1 educ + \beta_2 exper + \beta_3 tenure + U,
+\]
+we can use the command 
+```{r}
+reg = lm(wage ~ educ + exper + tenure, data = wage1)
+```
+The independent variables are separated by $+$ signs, but everything else is pretty much the same. The regression output looks like this:
+```{r}
+summary(reg)
+```
+Now the coefficients are contained in an array with $k + 1$ rows, where $k$ is the number of independent variables (3, in the previous example). Each row corresponds with a parameter: the top row is for $\hbeta_0$, the second is for $\hbeta_1$, the third for $\hbeta_2$, and the last for $\hbeta_3$. Each row lists (in order) the estimate $\hbeta_j$, the standard error $\mathrm{se}(\hbeta_j)$, the $t$-value (equal to the estimate divided by its standard error), and the $p$-value. 
