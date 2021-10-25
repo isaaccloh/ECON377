@@ -1,11 +1,56 @@
-# For 10/18
+# For 10/25
+
+# Clear environment
+rm(list=ls())
+
+# Set working directory
+setwd("C:/Users/Isaac/OneDrive - UNC-Wilmington/Econometrics/R")
+
+# Load Wooldridge package
+library(wooldridge)
 
 ####################
-#Exercise 8.5
+# Exercise 9.2
 
-reg6 = lm(narr86 ~ pcnv + ptime86 + qemp86, data = crime1)
+# First, explore the reltaionship between expenditures and povery measure
+cor(meap01$lunch, meap01$lexppp)
 
-reg7 = lm(narr86 ~ pcnv + avgsen + ptime86 +
-            + qemp86, data = crime1)
+# Find tbeta1, the coefficient from omitting lunch
+reg1 = lm(math4 ~ lexppp, data = meap01)
+tbeta1 = reg1$coefficients[2]
 
-summary(reg7)
+# Find hbeta1, the coefficient from multivariate regression
+reg2 = lm(math4 ~ lexppp + lunch, data = meap01)
+hbeta1 = reg2$coefficients[2]
+
+# View results of reg1 and reg2
+summary(reg1)
+summary(reg2)
+
+####################
+# Exercise 9.5
+
+# First, regress wage on educ, exper, and tenure in wage1
+reg3 = lm(wage ~ educ + exper + tenure, data = wage1)
+
+# Set degrees of freedom to n - k - 1 (note k = 3)
+n = nrow(wage1)
+df = n - 3 - 1
+
+# Get hsigma^2 estimate: first calculate SSR then divide by df. Then take square roots
+SSR = sum(reg3$residuals^2)
+hsigmasq = SSR/df
+hsigma = sqrt(hsigmasq)
+
+# Get R^2 from regressing educ on exper and tenure
+reg3a = lm(educ ~ exper + tenure, data = wage1)
+Rsqeduc = summary(reg3a)$r.squared
+
+# Calculate the SST for educ
+SSTeduc = var(wage1$educ) * (n-1)
+
+# Finally, calculate the standard error for beta1 (coefficient on educ)
+se_educ = hsigma/sqrt(SSTeduc * (1 - Rsqeduc))
+
+# Compare this value with what you got from the lm command
+summary(reg3)
