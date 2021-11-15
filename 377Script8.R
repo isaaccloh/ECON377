@@ -73,7 +73,7 @@ for (i in 1:M) {
   #Save slope coefficient
   
   if (divide_option) {
-    slopevec[i] = (reg$coefficients[2] - beta1) / se1 + beta1
+    slopevec[i] = (reg$coefficients[2]) / se1 + beta1
   } else {
     slopevec[i] = reg$coefficients[2] 
   }
