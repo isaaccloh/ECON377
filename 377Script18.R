@@ -50,13 +50,13 @@ df = nrow(meap93) - 3 - 1
 critval = qnorm(0.05)
 
 #Set tstat equal to t-statistics
-tstat = coef(reg) / sqrt(diag(vcov(reg)))
+tstat = summary(reg)$coefficients[,3]
 
 #Redo the regression with logs on independent variables
 reg2 = lm(math10 ~ log(totcomp) + log(staff) + log(enroll), data = meap93)
 
 #Set tstat equal to new t-statistics
-tstat = coef(reg) / sqrt(diag(vcov(reg)))
+tstat = summary(reg)$coefficients[,3]
 
 #Compare R^2 values
 summary(reg)$r.squared < summary(reg2)$r.squared
@@ -71,7 +71,7 @@ reg = lm(colGPA ~ hsGPA + ACT + skipped, data = gpa1)
 df = nrow(gpa1) - 3 - 1
 
 #Set tstat equal to t-statistics
-tstat = coef(reg) / sqrt(diag(vcov(reg)))
+tstat = summary(reg)$coefficients[,3]
 
 #Calculate critical values for 10% test ,5% test, 1% test
 critval10 = qnorm(0.95)
@@ -82,13 +82,13 @@ critval1 = qnorm(0.995)
 abs(tstat) > critval10
 
 #Set tstat equal to t-statistics
-tstat = coef(reg) / sqrt(diag(vcov(reg)))
+tstat = summary(reg)$coefficients[,3]
 
 #Critical value for 10% one sided test 
 critval10onesided = qnorm(0.9)
 
 
-#Exercise to calculate p value for the coefficient on ACT
+#### Exercise 10.11
 pval = 1 + pt(-abs(tstat), df = df) - pt(abs(tstat), df = df)
 
 #Compare with the p values obtained from the lm command
