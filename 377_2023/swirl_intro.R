@@ -14,6 +14,8 @@ swirl() # do this when you want to start swirl
 bye() # this exits swirl at any point. Your progress is saved
 swirl::info() # this gives you a handy reference for swirl commands
 
+## PLEASE ENTER YOUR NAME LIKE THIS: lohi (last name, first initial)
+
 ## IN CASE I MESS YOU UP and we have to reinstall the 377_swirl course, uncomment
 ## the following three lines and run them all once
 # library(swirl)
