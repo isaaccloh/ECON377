@@ -10,6 +10,12 @@ library(wooldridge)
 ## Example 2.3
 View(ceosal1)
 
+# View info on ceosal1
+?ceosal1
+
+# View variables in dataset
+ls(ceosal1)
+
 # Count sample size
 nrow(ceosal1)
 
