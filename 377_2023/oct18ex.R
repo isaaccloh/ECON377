@@ -2,8 +2,8 @@
 rm(list = ls())
 
 # Generate random data
-n = 1000 # Sample size
-m = 10000 # Number of samples
+n = 5000 # Sample size
+m = 1000 # Number of samples
 sigma = 0.4 # Variation of u
 
 # Illustration of what we're doing
@@ -11,7 +11,8 @@ x = rnorm(n)
 y = x + sigma * rnorm(n) # true beta1 = 1
 reg = lm(y ~ x)
 plot(x, y)
-abline(reg)
+abline(a = 0, b = 1)
+abline(reg, col = 'red')
 
 # Many draws of beta1
 res = c()
