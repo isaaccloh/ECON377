@@ -36,10 +36,10 @@ tval = (b1 - 1) / se
 alpha = 0.05
 df = reg$df.residual
 c = qt(1-alpha, df = df)
-tval
+tval > c
 
 # Two sided test
 alpha = 0.05
 df = reg$df.residual
 c = qt(1 - alpha/2, df = df)
-c
+abs(tval) > c
