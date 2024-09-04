@@ -1,7 +1,6 @@
 ## This is an example script that will handle the first swirl 
 ## assignment. You should produce something like this .R file
-## and submit it to Canvas by Friday, 9/1/2023
-
+## and submit it to Canvas 
 # Clear memory
 rm(list = ls())
 
