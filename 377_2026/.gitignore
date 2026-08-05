@@ -1,0 +1,9 @@
+# Safety net: never publish instructor materials, even if one lands here by mistake.
+*_complete.R
+*.tex
+*.pdf
+*.aux
+*.log
+*.out
+*.synctex.gz
+*_makefig*.R

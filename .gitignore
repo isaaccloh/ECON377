@@ -1,0 +1,9 @@
+# R junk
+.Rhistory
+.RData
+.Rproj.user/
+*.Rproj
+
+# OS junk
+.DS_Store
+Thumbs.db
