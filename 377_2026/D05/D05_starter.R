@@ -1,0 +1,30 @@
+## ECN 377 - Day 5 STARTER  |  Covariance, correlation, logs
+## ------------------------------------------------------------------
+## Do two variables move together?  cov() and cor() answer that.
+## Fill the TODO, then COMMIT + PUSH.
+## ------------------------------------------------------------------
+
+## ---- Demo 1: the notes' 3-point table ----
+## What you're learning: cov measures joint movement; cor rescales it to [-1, 1].
+x <- c(2, 0, -2); y <- c(0, 1, 2)
+cov(x, y)                     # KNOW THIS: sample covariance  = -2
+cor(x, y)                     # KNOW THIS: correlation        = -1
+
+## ---- Demo 2: real data ----
+## What you're learning: education and wages move together (positively).
+library(wooldridge); data("wage1")
+cov(wage1$educ, wage1$wage)   # positive
+cor(wage1$educ, wage1$wage)   # unitless strength
+
+## ---- Demo 3: special functions ----
+## What you're learning: exp undoes log.
+log(c(1, exp(1), 10))         # KNOW THIS: natural log.  help(log)
+exp(log(5))                   # exp(log(x)) = x
+
+## ================= PROBLEMS (your turn) =========================
+## For x = (1,3,5) and y = (2,2,8):
+x <- c(1, 3, 5); y <- c(2, 2, 8)
+cov_xy <- ______     # (a) covariance     (hint: cov(x, y))
+cor_xy <- ______     # (b) correlation    (hint: cor(x, y))
+## (c) In one sentence (comment): does a strong correlation prove causation? Why not?
+##     ANSWER:
