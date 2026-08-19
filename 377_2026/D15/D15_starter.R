@@ -1,3 +1,10 @@
+## >>> GET & SAVE (details in the R guide) -------------------------
+## GET, git mode  -> run in the Console:
+##   download.file("https://raw.githubusercontent.com/isaaccloh/ECON377/main/377_2026/D15/D15_starter.R", "D15.R")
+## GET, easy mode -> copy this file from github.com/isaaccloh/ECON377 (377_2026/D15) into a new script
+## SAVE your work -> commit + push D15.R to your own econ377 repo (or upload it on github.com)
+## ----------------------------------------------------------------
+
 ## ECN 377 - Day 15 STARTER  |  The multiple regression model
 ## ------------------------------------------------------------------
 ## Add variables with + in the formula. Each slope holds the OTHERS fixed.

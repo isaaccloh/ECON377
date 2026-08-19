@@ -1,3 +1,10 @@
+## >>> GET & SAVE (details in the R guide) -------------------------
+## GET, git mode  -> run in the Console:
+##   download.file("https://raw.githubusercontent.com/isaaccloh/ECON377/main/377_2026/D08/D08_starter.R", "D08.R")
+## GET, easy mode -> copy this file from github.com/isaaccloh/ECON377 (377_2026/D08) into a new script
+## SAVE your work -> commit + push D08.R to your own econ377 repo (or upload it on github.com)
+## ----------------------------------------------------------------
+
 ## ECN 377 - Day 8 STARTER  |  The SLR model & E[Y|X]
 ## ------------------------------------------------------------------
 ## Model:  Y = b0 + b1*X + U,  so  E[Y|X] = b0 + b1*X  (a straight line).

@@ -1,3 +1,10 @@
+## >>> GET & SAVE (details in the R guide) -------------------------
+## GET, git mode  -> run in the Console:
+##   download.file("https://raw.githubusercontent.com/isaaccloh/ECON377/main/377_2026/D05/D05_starter.R", "D05.R")
+## GET, easy mode -> copy this file from github.com/isaaccloh/ECON377 (377_2026/D05) into a new script
+## SAVE your work -> commit + push D05.R to your own econ377 repo (or upload it on github.com)
+## ----------------------------------------------------------------
+
 ## ECN 377 - Day 5 STARTER  |  Covariance, correlation, logs
 ## ------------------------------------------------------------------
 ## Do two variables move together?  cov() and cor() answer that.

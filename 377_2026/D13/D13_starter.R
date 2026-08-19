@@ -1,3 +1,10 @@
+## >>> GET & SAVE (details in the R guide) -------------------------
+## GET, git mode  -> run in the Console:
+##   download.file("https://raw.githubusercontent.com/isaaccloh/ECON377/main/377_2026/D13/D13_starter.R", "D13.R")
+## GET, easy mode -> copy this file from github.com/isaaccloh/ECON377 (377_2026/D13) into a new script
+## SAVE your work -> commit + push D13.R to your own econ377 repo (or upload it on github.com)
+## ----------------------------------------------------------------
+
 ## ECN 377 - Day 13 STARTER  |  Assumptions, unbiasedness, omitted-variable bias
 ## ------------------------------------------------------------------
 ## An omitted variable biases OLS if it (1) affects Y AND (2) is correlated with X.

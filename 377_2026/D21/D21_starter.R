@@ -1,3 +1,10 @@
+## >>> GET & SAVE (details in the R guide) -------------------------
+## GET, git mode  -> run in the Console:
+##   download.file("https://raw.githubusercontent.com/isaaccloh/ECON377/main/377_2026/D21/D21_starter.R", "D21.R")
+## GET, easy mode -> copy this file from github.com/isaaccloh/ECON377 (377_2026/D21) into a new script
+## SAVE your work -> commit + push D21.R to your own econ377 repo (or upload it on github.com)
+## ----------------------------------------------------------------
+
 ## ECN 377 - Day 21 STARTER  |  Two-sided t-tests & p-values
 ## ------------------------------------------------------------------
 ## Two-sided: reject if |t| > c.  The Pr(>|t|) column is the p-value for H0: beta = 0.

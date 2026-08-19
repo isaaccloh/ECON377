@@ -1,3 +1,10 @@
+## >>> GET & SAVE (details in the R guide) -------------------------
+## GET, git mode  -> run in the Console:
+##   download.file("https://raw.githubusercontent.com/isaaccloh/ECON377/main/377_2026/D10/D10_starter.R", "D10.R")
+## GET, easy mode -> copy this file from github.com/isaaccloh/ECON377 (377_2026/D10) into a new script
+## SAVE your work -> commit + push D10.R to your own econ377 repo (or upload it on github.com)
+## ----------------------------------------------------------------
+
 ## ECN 377 - Day 10 STARTER  |  lm(), fitted values, residuals, SSR
 ## ------------------------------------------------------------------
 ## lm() is the shortcut for the OLS line we derived by hand on Day 9.

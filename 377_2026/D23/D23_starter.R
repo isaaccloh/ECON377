@@ -1,3 +1,10 @@
+## >>> GET & SAVE (details in the R guide) -------------------------
+## GET, git mode  -> run in the Console:
+##   download.file("https://raw.githubusercontent.com/isaaccloh/ECON377/main/377_2026/D23/D23_starter.R", "D23.R")
+## GET, easy mode -> copy this file from github.com/isaaccloh/ECON377 (377_2026/D23) into a new script
+## SAVE your work -> commit + push D23.R to your own econ377 repo (or upload it on github.com)
+## ----------------------------------------------------------------
+
 ## ECN 377 - Day 23 STARTER  |  The F-test (joint significance)
 ## ------------------------------------------------------------------
 ## F-test asks whether a GROUP of variables jointly matters.

@@ -1,3 +1,10 @@
+## >>> GET & SAVE (details in the R guide) -------------------------
+## GET, git mode  -> run in the Console:
+##   download.file("https://raw.githubusercontent.com/isaaccloh/ECON377/main/377_2026/D09/D09_starter.R", "D09.R")
+## GET, easy mode -> copy this file from github.com/isaaccloh/ECON377 (377_2026/D09) into a new script
+## SAVE your work -> commit + push D09.R to your own econ377 repo (or upload it on github.com)
+## ----------------------------------------------------------------
+
 ## ECN 377 - Day 9 STARTER  |  Deriving the OLS estimates
 ## ------------------------------------------------------------------
 ## The derivation ends at  beta1-hat = S_xy / S_x^2 = cov(x,y)/var(x).
