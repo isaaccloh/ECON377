@@ -7,11 +7,15 @@
 
 ## ECN 377 - Day 2  |  first R session: the mean, real data, a first line.
 
-## (1) The mean, from our own numbers
-poll <- c(3, 0, 12, 5, 8)     # c() = make a vector (our class poll)
-sum(poll)                      # add them up
-length(poll)                   # how many (n)
-mean(poll)                     # the mean (= sum / length)
+## (1) The mean, from our own numbers  -- we fill this in together
+## step 1: put our class poll numbers in a vector -- use c()
+poll <- ______
+## step 2: add them all up -- use sum()
+______
+## step 3: how many are there? (n) -- use length()
+______
+## step 4: the mean = sum / length ... or just mean()
+______
 
 ## (2) Real data: dataset$variable
 library(wooldridge); data("wage1")   # 526 workers, 1976
