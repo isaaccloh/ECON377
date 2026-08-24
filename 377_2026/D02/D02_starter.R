@@ -18,6 +18,8 @@ ______
 ______
 
 ## (2) Real data: dataset$variable
+## R convention: dataset$variable picks ONE variable (column) out of a dataset --
+##   e.g. wage1$wage = the "wage" column of wage1, wage1$educ = the "educ" column.
 library(wooldridge); data("wage1")   # 526 workers, 1976
 summary(wage1)                        # snapshot of every variable
 mean(______)                          # TODO: fill in wage1$wage       -- center
