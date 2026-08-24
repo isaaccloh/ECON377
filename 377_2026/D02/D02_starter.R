@@ -25,7 +25,8 @@ summary(wage1)                        # snapshot of every variable
 mean(______)                          # TODO: fill in wage1$wage       -- center
 sd(wage1$wage)                        # spread
 hist(wage1$wage)                      # shape
-cor(wage1$educ, wage1$wage)           # do they move together? (not causation!)
+cor(wage1$educ, wage1$wage)           # they move together -- but correlation is NOT causation:
+                                      #   other variables (ability, background) probably drive it too.
 
 ## ================= PROBLEMS (your turn) =========================
 mean_wage <- ______           # (a) the mean wage        (hint: mean(wage1$wage))
