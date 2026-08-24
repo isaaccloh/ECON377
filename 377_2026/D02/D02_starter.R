@@ -15,6 +15,12 @@ data("wage1")                 # 526 US workers, all in 1976 -- a CROSS-SECTION
 cor(wage1$educ, wage1$wage)   # positive: more school goes with more pay...
 ## ...but correlation is NOT causation -- ability/background hide in the background.
 
+## ---- For PS1: describing a variable (center / spread / shape) ----
+summary(wage1)                # snapshot of every variable
+mean(wage1$wage)              # center
+sd(wage1$wage)                # spread (standard deviation)
+hist(wage1$wage)              # shape
+
 ## ================= PROBLEMS (your turn) =========================
 ## (a) Is wage1 cross-section, time-series, or panel?   ANSWER (comment):
 cor_ew <- ______              # (b) correlation of educ & wage   (hint: cor(wage1$educ, wage1$wage))
