@@ -5,20 +5,16 @@
 ## SAVE your work -> commit + push D01.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 1  |  run this after you install R, to check your setup.
-## (This is what we did together in class. Data comes from `wooldridge`.)
+## ECN 377 - Day 1  |  first R: the mean.  (Run after you install R + RStudio.)
+## Nothing is due today except installing the tools; this just checks your setup.
 
-library(wooldridge)      # course datasets
-data("wage1")            # 526 US workers, 1976
+## The mean = add them all up, divide by how many.
+xvec <- c(0, 0, 6, 2, 1)     # song counts from the notes (n = 5) -- or your own poll
+sum(xvec)                     # add them up
+length(xvec)                  # how many (n)
+sum(xvec) / length(xvec)      # the mean, by hand
+mean(xvec)                    # ...or just mean()   ->  9/5 = 1.8
 
-## Do people with more education earn more?
-plot(wage1$educ, wage1$wage,
-     xlab = "education (years)", ylab = "wage ($/hr, 1976)")
-abline(lm(wage ~ educ, data = wage1), col = "steelblue", lwd = 3)
-
-## Adding up and averaging -- put YOUR class poll numbers inside c(...):
-songs <- c(3, 0, 12, 5, 8)   # how many Taylor Swift songs in the last 24h?
-sum(songs)                    # add them up
-length(songs)                 # how many
-sum(songs) / length(songs)    # the mean, by hand
-mean(songs)                   # ...or just mean()
+## TODO: put THREE of your own numbers in c(...) and find their mean.
+my_nums <- ______             # e.g. c(4, 8, 6)
+mean(my_nums)                 # your mean

@@ -5,39 +5,17 @@
 ## SAVE your work -> commit + push D02.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 2 STARTER  |  R setup + summary statistics
-## ------------------------------------------------------------------
-## Today's workflow: FORK the class repo on GitHub, CLONE it into RStudio,
-## open this file, fill the TODO with me, then COMMIT + PUSH your version.
-## Data comes from `wooldridge`.  "KNOW THIS" = code you're responsible for.
-## ------------------------------------------------------------------
+## ECN 377 - Day 2  |  data types & causality; a first look at real data.
+## Get this file, fill the TODOs with me, then SAVE it back to your repo (header above / R guide).
 
-## First time only (once per computer):  install.packages("wooldridge")
-library(wooldridge)      # KNOW THIS: loads the course datasets.  help(wooldridge)
-data("wage1")            # KNOW THIS: load a dataset by name.      help(data)
+library(wooldridge)           # loads the course datasets
+data("wage1")                 # 526 US workers, all in 1976 -- a CROSS-SECTION
 
-## ---- Demo 1: look at a dataset ----
-## What you're learning: summary() snapshots every variable; $ pulls one out.
-summary(wage1)           # KNOW THIS: quick summary of a dataset.  help(summary)
-head(wage1)              # the first few rows.                     help(head)
-
-## ---- Demo 2: the mean = sum / count ----
-## What you're learning: mean = (x1 + ... + xn)/n = sum(x)/length(x) = mean(x).
-educ <- wage1$educ                 # KNOW THIS: $ pulls a variable out of a dataset
-sum(educ) / length(educ)           # the mean, by hand (top: the sum; bottom: n)
-______                             # TODO: the same thing with mean()  (hint: mean(educ))
-
-## ---- Demo 3: spread ----
-## What you're learning: sd() and var() measure how spread out the data are.
-sd(educ)                 # KNOW THIS: standard deviation.  help(sd)
-var(educ)                # KNOW THIS: variance (= sd^2).   help(var)
-
-## ---- Demo 4: a picture ----
-## What you're learning: a histogram shows the shape of one variable.
-hist(wage1$wage)         # KNOW THIS: histogram of a variable.  help(hist)
+## Do people with more education earn more?
+cor(wage1$educ, wage1$wage)   # positive: more school goes with more pay...
+## ...but correlation is NOT causation -- ability/background hide in the background.
 
 ## ================= PROBLEMS (your turn) =========================
-## Use the wage1 dataset. Fill in each blank, then commit + push.
-mean_wage <- ______      # (a) the mean wage             (hint: mean(wage1$wage))
-sd_wage   <- ______      # (b) the standard deviation of wage
-n         <- ______      # (c) the sample size n         (hint: nrow(wage1))
+## (a) Is wage1 cross-section, time-series, or panel?   ANSWER (comment):
+cor_ew <- ______              # (b) correlation of educ & wage   (hint: cor(wage1$educ, wage1$wage))
+## (c) Name one confounder that could bias the educ -> wage link.   ANSWER (comment):
