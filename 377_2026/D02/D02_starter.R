@@ -5,23 +5,22 @@
 ## SAVE your work -> commit + push D02.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 2  |  data types & causality; a first look at real data.
-## Get this file, fill the TODOs with me, then SAVE it back to your repo (header above / R guide).
+## ECN 377 - Day 2  |  first R session: the mean, real data, a first line.
 
-library(wooldridge)           # loads the course datasets
-data("wage1")                 # 526 US workers, all in 1976 -- a CROSS-SECTION
+## (1) The mean, from our own numbers
+poll <- c(3, 0, 12, 5, 8)     # c() = make a vector (our class poll)
+sum(poll)                      # add them up
+length(poll)                   # how many (n)
+mean(poll)                     # the mean (= sum / length)
 
-## Do people with more education earn more?
-cor(wage1$educ, wage1$wage)   # positive: more school goes with more pay...
-## ...but correlation is NOT causation -- ability/background hide in the background.
-
-## ---- For PS1: describing a variable (center / spread / shape) ----
-summary(wage1)                # snapshot of every variable
-mean(wage1$wage)              # center
-sd(wage1$wage)                # spread (standard deviation)
-hist(wage1$wage)              # shape
+## (2) Real data: dataset$variable
+library(wooldridge); data("wage1")   # 526 workers, 1976
+summary(wage1)                        # snapshot of every variable
+mean(______)                          # TODO: fill in wage1$wage       -- center
+sd(wage1$wage)                        # spread
+hist(wage1$wage)                      # shape
+cor(wage1$educ, wage1$wage)           # do they move together? (not causation!)
 
 ## ================= PROBLEMS (your turn) =========================
-## (a) Is wage1 cross-section, time-series, or panel?   ANSWER (comment):
-cor_ew <- ______              # (b) correlation of educ & wage   (hint: cor(wage1$educ, wage1$wage))
-## (c) Name one confounder that could bias the educ -> wage link.   ANSWER (comment):
+mean_wage <- ______           # (a) the mean wage        (hint: mean(wage1$wage))
+## (b) Is wage1 cross-section, time-series, or panel?   ANSWER (comment):
