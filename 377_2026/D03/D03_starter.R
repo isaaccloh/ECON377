@@ -5,18 +5,25 @@
 ## SAVE your work -> commit + push D03.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 3  |  ceteris paribus example + percentages.
+## ECN 377 - Day 3  |  ceteris paribus + percentages.   (we fill this in together)
 
-## Example A.2:  quantity = 120 - 9.8*price + 0.03*income
-b1 <- -9.8; b2 <- 0.03
-b1 * 1 + b2 * 0                 # price up $1, income fixed     -> -9.8
-b1 * (-2) + b2 * 300            # price down $2, income up $300 -> 28.6
+## --- Example A.2:  quantity = 120 - 9.8*price + 0.03*income ---
+## the two slopes:
+b1 <- ______        # slope on price    (hint: -9.8)
+b2 <- ______        # slope on income   (hint:  0.03)
+## price up $1, income held fixed  ->  change in quantity?
+______              # hint: b1*1 + b2*0
+## price DOWN $2 and income UP $300  ->  change in quantity?
+______              # hint: b1*(-2) + b2*300
 
-## Percentages
-0.250 * 100                     # a proportion -> percent  (0.250 -> 25%)
-(57 - 54) / 54 * 100            # percent change 54 -> 57   -> 5.56%
-57 - 54                         # percentage-POINT change   -> 3 p.p.
+## --- Percentages ---
+## turn the proportion 0.250 into a percent:
+______              # hint: 0.250 * 100
+## percent change when x goes 54 -> 57:
+______              # hint: (57 - 54) / 54 * 100
+## percentage-POINT change 54 -> 57 (just the difference):
+______              # hint: 57 - 54
 
 ## ================= PROBLEMS (your turn) =========================
-pct_chg <- ______     # (a) percent change from $20 to $25   (hint: (25-20)/20*100)
-## (b) an interest rate 3% -> 5%: percentage-POINT change = ___ ; percent change = ___  (comment)
+pct_chg <- ______   # (a) percent change from $20 to $25   (hint: (25-20)/20*100)
+## (b) interest rate 3% -> 5%: percentage-POINT change = ___ ; percent change = ___   (comment)
