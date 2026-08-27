@@ -19,10 +19,13 @@ ______              # hint: b1*(-2) + b2*300
 ## --- Percentages ---
 ## turn the proportion 0.250 into a percent:
 ______              # hint: 0.250 * 100
-## percent change when x goes 54 -> 57:
-______              # hint: (57 - 54) / 54 * 100
-## percentage-POINT change 54 -> 57 (just the difference):
-______              # hint: 57 - 54
+## pick an old and a new value (use recent numbers if you like):
+old <- ______
+new <- ______
+## percent change:
+______              # hint: (new - old) / old * 100
+## percentage-POINT change (just the difference):
+______              # hint: new - old
 
 ## ================= PROBLEMS (your turn) =========================
 pct_chg <- ______   # (a) percent change from $20 to $25   (hint: (25-20)/20*100)
