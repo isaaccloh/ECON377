@@ -5,28 +5,24 @@
 ## SAVE your work -> commit + push D04.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 4 STARTER  |  Variance & standard deviation
-## ------------------------------------------------------------------
-## We build the SAMPLE variance by hand on the notes' numbers (0,2,7),
-## then check it against var().  Fill the TODO, then COMMIT + PUSH.
-## KNOW THIS: var() and sd() divide by n-1 (the SAMPLE versions).
-## ------------------------------------------------------------------
+## ECN 377 - Day 4  |  variance, sd, covariance, correlation.  (all SAMPLE calculations)
+## Swap in your own numbers anywhere -- e.g. poll the room!
 
-## ---- Demo: variance by hand, then var() ----
-## What you're learning: variance = average squared distance from the mean (over n-1).
-x <- c(0, 2, 7)                          # the data from the notes
-mean(x)                                  # x-bar = 3
-x - mean(x)                              # deviations:  -3, -1, 4
-(x - mean(x))^2                          # squared:      9,  1, 16
-sum((x - mean(x))^2) / (length(x) - 1)   # variance BY HAND = 13  (divide by n-1!)
-var(x)                                   # KNOW THIS: var() = the SAME 13
-sd(x)                                    # KNOW THIS: sd = sqrt(variance) = sqrt(13)
+## --- Sample variance & sd ---
+x <- c(0, 2, 7)                # our data (CHANGE THESE)
+mean(x)                        # the mean
+______                         # variance BY HAND  (hint: sum((x-mean(x))^2)/(length(x)-1))
+var(x)                         # ...same thing
+______                         # sd                (hint: sd(x)   or   sqrt(var(x)))
 
-## ================= PROBLEMS (your turn) =========================
-## For x = (1, 5, 9): do it by hand with the pieces, then check with var()/sd().
-x <- c(1, 5, 9)
-xbar   <- ______     # (a) the mean            (hint: mean(x))
-devs   <- ______     # (b) the deviations      (hint: x - mean(x))
-var_x  <- ______     # (c) sample variance     (hint: sum(devs^2)/(length(x)-1))
-sd_x   <- ______     # (d) standard deviation  (hint: sqrt(var_x))
-c(var_x, var(x))     # your by-hand variance should match var(x)
+## --- Sample covariance ---
+x <- c(2, 0, -2)               # two paired variables (CHANGE THESE)
+y <- c(0, 1, 2)
+______                         # covariance BY HAND (hint: sum((x-mean(x))*(y-mean(y)))/(length(x)-1))
+cov(x, y)                      # ...same thing
+
+## --- Sample correlation ---
+______                         # from the parts    (hint: cov(x,y)/(sd(x)*sd(y)))
+cor(x, y)                      # ...same thing
+
+## remember: var, sd, cov, cor are all SAMPLE quantities.
