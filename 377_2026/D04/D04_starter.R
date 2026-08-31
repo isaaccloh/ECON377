@@ -33,4 +33,12 @@ ______
 ## check it with the built-in correlation function
 ______
 
+## --- Nonlinear: log & exp (they allow non-constant, curved relationships) ---
+x <- seq(0.5, 5, by = 0.1)
+plot(x, log(x), type = "l")    # log: diminishing (flattens out)
+plot(x, exp(x), type = "l")    # exp: grows ever faster
+## show that exp undoes log, and log undoes exp (try the number 3):
+______                         # log then exp
+______                         # exp then log
+
 ## remember: var, sd, cov, cor are all SAMPLE quantities -- our best guesses at the population's.
