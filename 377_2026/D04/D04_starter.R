@@ -6,23 +6,31 @@
 ## ----------------------------------------------------------------
 
 ## ECN 377 - Day 4  |  variance, sd, covariance, correlation.  (all SAMPLE calculations)
-## Swap in your own numbers anywhere -- e.g. poll the room!
+## We fill in the blanks together -- swap in your own numbers (poll the room!)
 
 ## --- Sample variance & sd ---
-x <- c(0, 2, 7)                # our data (CHANGE THESE)
+x <- c(0, 2, 7)                # our data (change these)
 mean(x)                        # the mean
-______                         # variance BY HAND  (hint: sum((x-mean(x))^2)/(length(x)-1))
-var(x)                         # ...same thing
-______                         # sd                (hint: sd(x)   or   sqrt(var(x)))
+
+## by hand: subtract the mean from each x, square, add up, divide by n - 1
+______
+## check it with the built-in variance function
+______
+## sd = the square root of the variance
+______
 
 ## --- Sample covariance ---
-x <- c(2, 0, -2)               # two paired variables (CHANGE THESE)
-y <- c(0, 1, 2)
-______                         # covariance BY HAND (hint: sum((x-mean(x))*(y-mean(y)))/(length(x)-1))
-cov(x, y)                      # ...same thing
+x <- c(2, 0, -2); y <- c(0, 1, 2)   # two paired variables (change these)
+
+## by hand: subtract each mean, multiply the pairs, add up, divide by n - 1
+______
+## check it with the built-in covariance function
+______
 
 ## --- Sample correlation ---
-______                         # from the parts    (hint: cov(x,y)/(sd(x)*sd(y)))
-cor(x, y)                      # ...same thing
+## correlation = covariance divided by (sd of x  times  sd of y)
+______
+## check it with the built-in correlation function
+______
 
-## remember: var, sd, cov, cor are all SAMPLE quantities.
+## remember: var, sd, cov, cor are all SAMPLE quantities -- our best guesses at the population's.
