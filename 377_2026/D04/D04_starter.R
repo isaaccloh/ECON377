@@ -6,39 +6,43 @@
 ## ----------------------------------------------------------------
 
 ## ECN 377 - Day 4  |  variance, sd, covariance, correlation.  (all SAMPLE calculations)
-## We fill in the blanks together -- swap in your own numbers (poll the room!)
+## We build this from scratch together -- pick your own numbers (poll the room!).
 
 ## --- Sample variance & sd ---
-x <- c(0, 2, 7)                # our data (change these)
-mean(x)                        # the mean
-
-## by hand: subtract the mean from each x, square, add up, divide by n - 1
+## put a few numbers in a vector called x
+______
+## find its mean
+______
+## by hand: subtract the mean from each value, square, add up, divide by n - 1
 ______
 ## check it with the built-in variance function
 ______
-## sd = the square root of the variance
+## the sd is the square root of the variance
 ______
 
 ## --- Sample covariance ---
-x <- c(2, 0, -2); y <- c(0, 1, 2)   # two paired variables (change these)
-
+## put two paired variables (same length) in vectors x and y
+______
+______
 ## by hand: subtract each mean, multiply the pairs, add up, divide by n - 1
 ______
 ## check it with the built-in covariance function
 ______
 
 ## --- Sample correlation ---
-## correlation = covariance divided by (sd of x  times  sd of y)
+## the correlation is the covariance divided by (sd of x  times  sd of y)
 ______
 ## check it with the built-in correlation function
 ______
 
-## --- Nonlinear: log & exp (they allow non-constant, curved relationships) ---
-x <- seq(0.5, 5, by = 0.1)
-plot(x, log(x), type = "l")    # log: diminishing (flattens out)
-plot(x, exp(x), type = "l")    # exp: grows ever faster
-## show that exp undoes log, and log undoes exp (try the number 3):
-______                         # log then exp
-______                         # exp then log
+## --- Nonlinear: log & exp (allow non-constant, curved relationships) ---
+## make a range of positive x-values (call it x)
+______
+## plot log(x): it flattens out (diminishing).  then plot exp(x): it grows fast.
+______
+______
+## check that exp undoes log, and log undoes exp (pick any positive number):
+______
+______
 
 ## remember: var, sd, cov, cor are all SAMPLE quantities -- our best guesses at the population's.
