@@ -14,3 +14,5 @@ x <- ______        # the values          (e.g. a die: 1:6)
 p <- ______        # their probabilities
 ## E[X] is a weighted average: sum of  x * p
 ______
+## E[X^2] weights the SQUARED values: sum of  x^2 * p
+______
