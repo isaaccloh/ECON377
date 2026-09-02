@@ -35,14 +35,4 @@ ______
 ## check it with the built-in correlation function
 ______
 
-## --- Nonlinear: log & exp (allow non-constant, curved relationships) ---
-## make a range of positive x-values (call it x)
-______
-## plot log(x): it flattens out (diminishing).  then plot exp(x): it grows fast.
-______
-______
-## check that exp undoes log, and log undoes exp (pick any positive number):
-______
-______
-
 ## remember: var, sd, cov, cor are all SAMPLE quantities -- our best guesses at the population's.
