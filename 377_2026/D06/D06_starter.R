@@ -5,7 +5,7 @@
 ## SAVE your work -> commit + push D06.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 6 STARTER  |  Population expectation & variance
+## ECN 377 - Day 6 STARTER  |  Population expectation, variance, covariance & correlation
 ## ------------------------------------------------------------------
 ## The "weight by the probabilities and add" method (die/coin tables).
 ## Fill the TODO, then COMMIT + PUSH.
@@ -30,3 +30,18 @@ x <- c(1, 2, 3); p <- c(0.2, 0.5, 0.3)
 EX   <- ______     # (a) E[X]                 (hint: sum(x*p))
 EX2  <- ______     # (b) E[X^2]               (hint: sum(x^2*p))
 VarX <- ______     # (c) Var(X) = E[X^2]-E[X]^2
+
+## ---- Covariance from a joint table:  Cov(X,Y) = E[XY] - E[X]*E[Y] ----
+## Two INDEPENDENT coin flips (X, Y in {0,1}); each (x,y) pair has probability 1/4.
+xj <- c(0, 0, 1, 1)
+yj <- c(0, 1, 0, 1)
+pj <- rep(1/4, 4)                 # joint probability of each (x, y) pair
+EXj  <- sum(xj * pj)              # E[X]
+EYj  <- sum(yj * pj)              # E[Y]
+EXYj <- sum(xj * yj * pj)         # E[XY]
+CovXY <- ______                   # TODO: Cov(X,Y) = E[XY] - E[X]*E[Y]   (independent -> expect 0)
+
+## A DEPENDENT pair that moves together: (x,y) = (0,0) or (1,1), each with prob 1/2.
+xd <- c(0, 1); yd <- c(0, 1); pd <- c(0.5, 0.5)
+sum(xd*yd*pd) - sum(xd*pd)*sum(yd*pd)   # Cov > 0  (they rise together)
+## Correlation = Cov / (sd(X)*sd(Y)) is the unitless version, always in [-1, 1].
