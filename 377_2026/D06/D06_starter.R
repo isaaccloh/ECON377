@@ -5,7 +5,7 @@
 ## SAVE your work -> commit + push D06.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 6 STARTER  |  Expectation properties, variance, covariance, correlation
+## ECN 377 - Day 6 STARTER  |  Expectation properties, variance, covariance
 ## ------------------------------------------------------------------
 ## One idea powers all of today:  weight each value by its probability, then add.
 ##      E[g(X)] = sum( g(x) * p )
@@ -35,9 +35,7 @@ pj <- ______        # probability of each pair
 EXY <- ______       # E[XY]                 -- same idea, weight xj*yj
 CovXY <- ______     # Cov = E[XY] - E[X]*E[Y]    -- independent, so expect 0
 
-## ===== 4. Correlation:  Cor(X,Y) = Cov(X,Y) / ( sd(X) * sd(Y) ) =====
-## Unitless; always between -1 and 1.   (Remember: correlation is NOT causation.)
-______              # Cor(X, Y)             -- here sd(X) = sd(Y) = 0.5
+## (Correlation -- the unitless version of covariance -- comes next class, in D07.)
 
 ## ================= YOUR TURN =========================
 ## X takes values 1, 2, 3 with probabilities 0.2, 0.5, 0.3.
