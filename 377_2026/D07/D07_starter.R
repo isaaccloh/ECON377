@@ -35,6 +35,9 @@ ______           # E[wage | educ = 12] = the average of those wages          (me
 ______           # E[wage | educ = 16]   (mean(wage1$wage[wage1$educ == 16]))
 ## The conditional mean RISES with education.
 
+## Special case  E[X | X] = X: condition on X and there's nothing left to average.
+______           # E[educ | educ = 12] = mean of educ AMONG the educ==12 people (guess first!)
+
 ## ===== 3. Conditional variance:  Var(Y | X = x) = spread of Y within the X = x subgroup =====
 ______           # Var(wage | educ = 12)  -- var() of the SAME selected wages: var(w12)
 ______           # Var(wage | educ = 16)  -- var(wage1$wage[wage1$educ == 16])
