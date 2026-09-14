@@ -34,3 +34,26 @@ ______              # Var(wage | educ = 16)  -- same idea, educ == 16
 ______              # mean of wage among educ == 14
 ## (b) In one sentence (comment): does the positive cor(educ, wage) PROVE school raises pay?
 ##     Name one confounder.  ANSWER:
+
+## ================= OPTIONAL DEMO (run it and look -- nothing to fill in) =================
+## SEE conditional expectation & variance: a scatter of wage vs educ, with a sideways
+## kernel-density estimate of wage drawn at educ = 12 and educ = 16.
+##   * the DOT (center of each hump) = E[wage | educ]      -- conditional EXPECTATION
+##   * the WIDTH/spread of each hump = Var(wage | educ)    -- conditional VARIANCE
+plot(wage1$educ, wage1$wage, pch = 16, col = "grey70",
+     xlab = "education (years)", ylab = "wage",
+     main = "Conditional distribution of wage given education")
+
+show_group <- function(ed, col) {
+  w <- wage1$wage[wage1$educ == ed]      # wages within this education subgroup
+  d <- density(w)                        # kernel density estimate of that subgroup
+  lines(ed + d$y / max(d$y) * 2.5, d$x, col = col, lwd = 2)  # density drawn sideways at x = ed
+  abline(v = ed, col = col, lty = 3)                         # the vertical slice educ = ed
+  points(ed, mean(w), pch = 19, col = col, cex = 1.4)        # dot = E[wage | educ = ed]
+}
+show_group(12, "blue")                   # HS diploma
+show_group(16, "red")                    # college degree
+legend("topleft", c("educ = 12 (HS)", "educ = 16 (college)"),
+       col = c("blue", "red"), lwd = 2, bty = "n")
+## Read it: the red hump sits HIGHER (bigger conditional mean) and is WIDER (bigger
+## conditional variance) than the blue hump -- income rises AND fans out with education.
