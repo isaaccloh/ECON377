@@ -11,7 +11,8 @@
 ## Fill the TODO, then COMMIT + PUSH.
 ## ------------------------------------------------------------------
 
-library(wooldridge); data("wage1")
+library(wooldridge)
+data("wage1")
 
 ## ---- Demo: lm(), fitted values, residuals ----
 ## What you're learning: reg holds the line; $ pulls out its pieces.
@@ -29,7 +30,9 @@ predict(creg, data.frame(roe = 30))      # predicted salary at roe = 30
 
 ## ================= PROBLEMS (your turn) =========================
 ## Line: wage-hat = -0.90 + 0.54*educ.  A person: educ = 12, actual wage y = 9.0
-b0 <- -0.90; b1 <- 0.54; y <- 9.0
+b0 <- -0.90
+b1 <- 0.54
+y <- 9.0
 yhat <- ______   # (a) fitted value       (hint: b0 + b1*12)
 uhat <- ______   # (b) residual y - yhat
 ## (c) Over- or under-predicted? (comment)  ANSWER:

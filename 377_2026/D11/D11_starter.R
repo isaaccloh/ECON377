@@ -11,7 +11,8 @@
 ## Fill the TODO, then COMMIT + PUSH.
 ## ------------------------------------------------------------------
 
-library(wooldridge); data("wage1")
+library(wooldridge)
+data("wage1")
 reg <- lm(wage ~ educ, data = wage1)
 
 ## ---- Demo: R^2 from summary, then by hand ----
@@ -27,7 +28,8 @@ summary(lm(bwght ~ cigs, data = bwght))$r.squared   # ~ 0.023
 
 ## ================= PROBLEMS (your turn) =========================
 ## A regression has SST = 200 and SSR = 150.
-SST <- 200; SSR <- 150
+SST <- 200
+SSR <- 150
 SSE  <- ______   # (a) explained sum of squares  (hint: SST - SSR)
 R2   <- ______   # (b) R^2                        (hint: 1 - SSR/SST)
 unexp <- ______  # (c) fraction unexplained       (hint: SSR/SST)

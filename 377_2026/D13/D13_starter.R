@@ -11,7 +11,8 @@
 ## Fill the comments, then COMMIT + PUSH.
 ## ------------------------------------------------------------------
 
-library(wooldridge); data("meap93")
+library(wooldridge)
+data("meap93")
 
 ## ---- Demo: OVB in the wild ----
 ## What you're learning: a "wrong sign" often means a confounder, not a real effect.

@@ -11,7 +11,8 @@
 ## Fill the TODO, then COMMIT + PUSH.
 ## ------------------------------------------------------------------
 
-library(wooldridge); data("rdchem")
+library(wooldridge)
+data("rdchem")
 
 ## ---- Demo: confint() and the CI-test duality ----
 reg <- lm(log(rd) ~ log(sales) + profmarg, data = rdchem)
@@ -20,7 +21,9 @@ confint(reg, level = 0.95)      # KNOW THIS: 95% CI for each coefficient
 
 ## ================= PROBLEMS (your turn) =========================
 ## beta-hat = 0.30, se = 0.10, use c = 1.96 for a 95% CI
-bhat <- 0.30; se <- 0.10; c <- 1.96
+bhat <- 0.30
+se <- 0.10
+c <- 1.96
 lower <- ______   # (a) lower bound   (hint: bhat - c*se)
 upper <- ______   # (b) upper bound   (hint: bhat + c*se)
 ## (c) Is 0 inside [lower, upper]? Do we reject H0: beta = 0 at 5%?   ANSWER:

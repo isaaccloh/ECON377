@@ -39,7 +39,8 @@ CovXY <- ______     # Cov = E[XY] - E[X]*E[Y]    -- independent, so expect 0
 
 ## ================= YOUR TURN =========================
 ## X takes values 1, 2, 3 with probabilities 0.2, 0.5, 0.3.
-x <- ______; p <- ______
+x <- ______
+p <- ______
 EX   <- ______      # (a) E[X]
 EX2  <- ______      # (b) E[X^2]
 VarX <- ______      # (c) Var(X) = E[X^2] - E[X]^2

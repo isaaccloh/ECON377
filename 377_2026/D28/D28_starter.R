@@ -17,7 +17,8 @@
 R2 <- ______        # 1 - SSR/SST
 
 ## (c) beta-hat = 0.4, se = 0.1
-bhat <- 0.4; se <- 0.1
+bhat <- 0.4
+se <- 0.1
 tstat <- ______     # bhat/se
 ##     Reject H0: beta=0 at 5% (two-sided, c=2)?  ANSWER (comment):
 

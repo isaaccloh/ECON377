@@ -11,7 +11,8 @@
 ## Fill the comments, then COMMIT + PUSH.
 ## ------------------------------------------------------------------
 
-library(wooldridge); data("wage1")
+library(wooldridge)
+data("wage1")
 
 ## ---- The full analysis ----
 ## What you're learning: the skill is READING a regression, not running it.

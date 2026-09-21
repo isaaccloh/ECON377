@@ -11,7 +11,8 @@
 ## Fill the TODO, then COMMIT + PUSH.
 ## ------------------------------------------------------------------
 
-library(wooldridge); data("wage1")
+library(wooldridge)
+data("wage1")
 
 ## ---- Demo: is the return to experience positive? (Example 4.1) ----
 reg <- lm(log(wage) ~ educ + exper + tenure, data = wage1)

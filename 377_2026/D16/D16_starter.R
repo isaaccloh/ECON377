@@ -23,7 +23,9 @@ lm(log(wage) ~ educ + exper + tenure, data = wage1)$coefficients   # 0.28, 0.092
 
 ## ================= PROBLEMS (your turn) =========================
 ## colGPA-hat = 1.29 + 0.45*hsGPA + 0.0094*ACT
-b0 <- 1.29; b1 <- 0.45; b2 <- 0.0094
+b0 <- 1.29
+b1 <- 0.45
+b2 <- 0.0094
 pred     <- ______   # (a) colGPA at hsGPA=3.5, ACT=24   (hint: b0 + b1*3.5 + b2*24)
 eff_hsGPA <- ______  # (b) +1 hsGPA, ACT fixed            (hint: b1)
 eff_ACT10 <- ______  # (c) +10 ACT, hsGPA fixed           (hint: b2*10)

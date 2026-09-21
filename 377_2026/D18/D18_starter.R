@@ -11,7 +11,8 @@
 ## Fill the comments, then COMMIT + PUSH.
 ## ------------------------------------------------------------------
 
-library(wooldridge); data("wage1")
+library(wooldridge)
+data("wage1")
 
 ## ---- Demo: read the standard errors ----
 ## What you're learning: precision lives in the se, not the estimate.

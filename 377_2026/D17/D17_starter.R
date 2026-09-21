@@ -11,12 +11,14 @@
 ## Fill the TODO, then COMMIT + PUSH.
 ## ------------------------------------------------------------------
 
-library(wooldridge); data("gpa1")
+library(wooldridge)
+data("gpa1")
 
 ## ---- Demo: the bias, live (Example 3.3) ----
 b_slr <- lm(colGPA ~ ACT, data = gpa1)$coefficients["ACT"]        # SLR: ~0.0271
 mlr   <- lm(colGPA ~ ACT + hsGPA, data = gpa1)$coefficients
-b_mlr <- mlr["ACT"]; b2 <- mlr["hsGPA"]                           # MLR: 0.0094, 0.453
+b_mlr <- mlr["ACT"]
+b2 <- mlr["hsGPA"]   # MLR: 0.0094, 0.453
 d1    <- lm(hsGPA ~ ACT, data = gpa1)$coefficients["ACT"]         # delta1: ~0.0389
 
 ## formula (3.23): SLR slope = MLR slope + b2 * delta1

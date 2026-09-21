@@ -10,7 +10,8 @@
 ## Fill each ______ as we go in class, then COMMIT + PUSH.
 ## ------------------------------------------------------------------
 
-library(wooldridge); data("wage1")
+library(wooldridge)
+data("wage1")
 
 ## ===== 1. Population correlation from a probability table =====
 ## X, Y are correlated 0/1 coin flips.  Joint probabilities of the four (x, y) pairs:
@@ -61,7 +62,8 @@ plot(wage1$educ, wage1$wage, pch = 16, col = "grey70",
 show_group <- function(ed, col) {
   w <- wage1$wage[wage1$educ == ed]      # wages within this education subgroup
   d <- density(w)                        # kernel density estimate of that subgroup
-  m <- mean(w); s <- sd(w)               # conditional mean and standard deviation
+  m <- mean(w)
+  s <- sd(w)   # conditional mean and standard deviation
   lines(ed + d$y / max(d$y) * 2.5, d$x, col = col, lwd = 2)     # density drawn sideways at x = ed
   arrows(ed, m - s, ed, m + s, angle = 90, code = 3,
          length = 0.05, col = col, lwd = 2)                     # bar = mean +/- 1 sd (spread)
