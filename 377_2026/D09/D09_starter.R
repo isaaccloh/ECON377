@@ -12,15 +12,18 @@
 ## ------------------------------------------------------------------
 
 ## ---- Demo: estimate the wage-education line, by hand ----
-library(wooldridge); data("wage1")
-x <- wage1$educ; y <- wage1$wage    # X = education, Y = wage
+library(wooldridge)
+data("wage1")
+x <- wage1$educ     # X = education
+y <- wage1$wage     # Y = wage
 b1 <- ______        # slope      -- the derived formula:  cov(x, y) / var(x)
 b0 <- ______        # intercept  -- mean(y) - b1 * mean(x)
 c(b0 = b0, b1 = b1) # the fitted line  (should be about -0.90 and 0.54)
 
 ## ================= YOUR TURN =========================
 ## Tiny dataset:  x = (1, 2, 3),  y = (2, 2, 5)
-x <- c(1, 2, 3); y <- c(2, 2, 5)
+x <- c(1, 2, 3)
+y <- c(2, 2, 5)
 b1    <- ______   # (a) slope
 b0    <- ______   # (b) intercept
 pred4 <- ______   # (c) predicted y at x = 4
