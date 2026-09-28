@@ -5,31 +5,32 @@
 ## SAVE your work -> commit + push D11.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 11 STARTER  |  Goodness of fit: SST = SSE + SSR, and R^2
+## ECN 377 - Day 11 STARTER  |  OLS properties 1-3;  SST = SSE + SSR, R^2
 ## ------------------------------------------------------------------
-## R^2 = fraction of the variation in Y explained by X = 1 - SSR/SST.
-## Fill the TODO, then COMMIT + PUSH.
+## Each ______ comment gives the MATH + a hint at the code; you write the command.
+## Fill each ______ as we go, then COMMIT + PUSH.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
 data("wage1")
 reg <- lm(wage ~ educ, data = wage1)
 
-## ---- Demo: R^2 from summary, then by hand ----
-## What you're learning: R^2 = 1 - SSR/SST.
-summary(reg)$r.squared                        # KNOW THIS: R^2
-sst <- sum((wage1$wage - mean(wage1$wage))^2)  # total variation
-ssr <- sum(reg$residuals^2)                     # unexplained variation
-1 - ssr / sst                                   # = R^2
+## ---- OLS properties 1-3  (hold on ANY sample) ----
+______   # 1) the residuals sum to 0            -- add up the residuals of reg
+______   # 2) x & residuals are uncorrelated    -- add up educ * (the residuals)  (~ 0)
+______   # 3) (xbar, ybar) is ON the line       -- does mean(wage) equal  b0 + b1*mean(educ)?
 
-## ---- Demo: low R^2 is normal ----
+## ---- SST = SSE + SSR, and R^2   (bwght ~ cigs) ----
 data("bwght")
-summary(lm(bwght ~ cigs, data = bwght))$r.squared   # ~ 0.023
+reg2 <- ______   # regress bwght on cigs
+SST <- ______    # total variation:   squared deviations of bwght from its mean, summed
+SSR <- ______    # unexplained:       squared residuals of reg2, summed
+SSE <- ______    # explained:         SST - SSR
+R2  <- ______    # R^2 = SSE / SST    (~ 0.02: low is normal)
 
-## ================= PROBLEMS (your turn) =========================
+## ================= YOUR TURN =========================
 ## A regression has SST = 200 and SSR = 150.
-SST <- 200
-SSR <- 150
-SSE  <- ______   # (a) explained sum of squares  (hint: SST - SSR)
-R2   <- ______   # (b) R^2                        (hint: 1 - SSR/SST)
-unexp <- ______  # (c) fraction unexplained       (hint: SSR/SST)
+SST0 <- 200
+SSR0 <- 150
+SSE0 <- ______   # (a) explained sum of squares
+R20  <- ______   # (b) R^2
