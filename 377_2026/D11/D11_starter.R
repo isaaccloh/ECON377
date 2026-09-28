@@ -8,7 +8,7 @@
 ## ECN 377 - Day 11 STARTER  |  OLS properties 1-3;  SST = SSE + SSR, R^2
 ## ------------------------------------------------------------------
 ## Each ______ comment gives the MATH + a hint at the code; you write the command.
-## Fill each ______ as we go, then COMMIT + PUSH.
+## Fill each ______ as we go, then upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
