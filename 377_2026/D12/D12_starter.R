@@ -5,13 +5,22 @@
 ## SAVE your work -> commit + push D12.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 12 STARTER  |  Logs & functional form
+## ECN 377 - Day 12 STARTER  |  R^2;  logs & functional form
 ## ------------------------------------------------------------------
-## Wrap a variable in log() inside the formula; read the slope with Table 2.3.
-## Fill the TODO, then COMMIT + PUSH.
+## Each ______ comment gives the MATH + a hint at the code; you write the command.
+## Logs: wrap a variable in log() inside the formula; read the slope with Table 2.3.
+## Fill each ______ as we go, then upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
+
+## ---- SST = SSE + SSR, and R^2   (bwght ~ cigs) ----
+data("bwght")
+reg2 <- ______   # regress bwght on cigs
+SST <- ______    # total variation:   squared deviations of bwght from its mean, summed
+SSR <- ______    # unexplained:       squared residuals of reg2, summed
+SSE <- ______    # explained:         SST - SSR
+R2  <- ______    # R^2 = SSE / SST    (~ 0.02: low is normal)
 
 ## ---- Demo: log-level (Example 2.10) ----
 ## What you're learning: log(y) on x  ->  slope is a PERCENT change in y.
@@ -24,8 +33,15 @@ data("ceosal1")
 lm(log(salary) ~ log(sales), data = ceosal1)$coefficients   # 4.822, 0.257
 
 ## ================= PROBLEMS (your turn) =========================
+## A regression has SST = 200 and SSR = 150.
+SST0 <- 200
+SSR0 <- 150
+SSE0 <- ______   # (a) explained sum of squares
+R20  <- ______   # (b) R^2
+unex <- ______   # (c) fraction of the variation UNEXPLAINED
+
 ## log-level model:  log(wage)-hat = 0.58 + 0.08*educ
 b1 <- 0.08
-pct_1yr <- ______   # (a) % change in wage from +1 year of school  (hint: 100*b1)
-pct_4yr <- ______   # (b) % change from +4 years                   (hint: 100*b1*4)
-## (c) In a log-log model, the slope is called a(n) ______  (comment)
+pct_1yr <- ______   # (d) % change in wage from +1 year of school  (hint: 100*b1)
+pct_4yr <- ______   # (e) % change from +4 years                   (hint: 100*b1*4)
+## (f) In a log-log model, the slope is called a(n) ______  (comment)
