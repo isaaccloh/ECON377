@@ -5,7 +5,7 @@
 ## SAVE your work -> commit + push D12.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 12 STARTER  |  R^2;  logs & functional form
+## ECN 377 - Day 12 STARTER  |  R^2;  units;  logs & functional form
 ## ------------------------------------------------------------------
 ## Each ______ comment gives the MATH + a hint at the code; you write the command.
 ## Logs: wrap a variable in log() inside the formula; read the slope with Table 2.3.
@@ -21,6 +21,15 @@ SST <- ______    # total variation:   squared deviations of bwght from its mean,
 SSR <- ______    # unexplained:       squared residuals of reg2, summed
 SSE <- ______    # explained:         SST - SSR
 R2  <- ______    # R^2 = SSE / SST    (~ 0.02: low is normal)
+
+## ---- Units of measurement   (Example 2.3: salary on roe, salary in $1000s) ----
+data("ceosal1")
+reg3 <- ______        # regress salary on roe                         (963.19 and 18.50)
+ceosal1$salarydol <- ______   # salary in DOLLARS:  Y x 1000          (hint: 1000 * the salary column)
+______                # regress salarydol on roe: both estimates x 1000?  (look at $coefficients)
+ceosal1$roedec <- ______      # roe as a DECIMAL:   X x 1/100         (hint: the roe column / 100)
+______                # regress salary on roedec: slope x 100, intercept unchanged?
+______                # R^2 of reg3 -- same for all three regressions  (hint: summary(...)$r.squared)
 
 ## ---- Demo: log-level (Example 2.10) ----
 ## What you're learning: log(y) on x  ->  slope is a PERCENT change in y.
