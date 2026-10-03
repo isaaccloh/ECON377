@@ -5,24 +5,24 @@
 ## SAVE your work -> commit + push D27.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 27 STARTER  |  Synthesis + AI audit
+## ECN 377 - Day 27 STARTER  |  Interactions
 ## ------------------------------------------------------------------
-## Run one full analysis, read it carefully, then correct the AI's four mistakes.
-## Fill the comments, then COMMIT + PUSH.
+## An interaction (dummy * variable) lets the SLOPE differ by group.
+## female*educ = female + educ + female:educ.  Fill the TODO, upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
 data("wage1")
 
-## ---- The full analysis ----
-## What you're learning: the skill is READING a regression, not running it.
-reg <- lm(log(wage) ~ educ + exper + female, data = wage1)
-summary(reg)      # estimates, se, t, p-values, overall F
-confint(reg)      # 95% CIs
+## ---- Demo: does the return to education differ by gender? ----
+## What you're learning: the female:educ coefficient is the SLOPE difference.
+reg <- lm(wage ~ female * educ, data = wage1)   # KNOW THIS: * = both + interaction
+reg$coefficients        # intercept, female, educ, female:educ
 
-## ================= AUDIT THE AI (your turn) =========================
-## The chatbot made FOUR errors. Write the correction for each (one line):
-## (1) "educ coef 0.09 => +$0.09/hr per year":   CORRECTION:
-## (2) "female is negative => being female CAUSES lower pay":  CORRECTION:
-## (3) "the p-value on exper tests whether it equals 1":  CORRECTION:
-## (4) "R^2 ~ 0.30, so the model is useless":  CORRECTION:
+## ================= PROBLEMS (your turn) =========================
+## return to school: males = b1 ; females = b1 + d1,  with b1 = 0.54, d1 = -0.09
+b1 <- 0.54
+d1 <- -0.09
+ret_male   <- ______   # (a) males' return per year    (hint: b1)
+ret_female <- ______   # (b) females' return per year  (hint: b1 + d1)
+## (c) Who has the higher return, and by how much? (comment)  ANSWER:

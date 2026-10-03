@@ -5,28 +5,27 @@
 ## SAVE your work -> commit + push D25.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 25 STARTER  |  Dummy variables
+## ECN 377 - Day 25 STARTER  |  The F-test (joint significance)
 ## ------------------------------------------------------------------
-## A dummy is a 0/1 column; its coefficient is the group difference (an intercept shift).
-## Fill the TODO, then COMMIT + PUSH.
+## F-test asks whether a GROUP of variables jointly matters.
+## anova(restricted, full) does it.  Fill the TODO, then upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
-data("wage1")
+data("mlb1")
 
-## ---- Demo: the female wage gap ----
-## What you're learning: the female coefficient is the c.p. gap at EVERY education level.
-reg <- lm(wage ~ female + educ, data = wage1)
-reg$coefficients        # intercept, female (the gap), educ
-
-## many categories -> factor() makes the dummies and drops one base level:
-lm(wage ~ factor(numdep) + educ, data = wage1)$coefficients
+## ---- Demo: do batting stats jointly matter? ----
+## What you're learning: variables weak on their own t-tests can matter as a group.
+ur <- lm(log(salary) ~ years + gamesyr + bavg + hrunsyr + rbisyr, data = mlb1)  # full
+r  <- lm(log(salary) ~ years + gamesyr, data = mlb1)                             # drop 3 stats
+anova(r, ur)                     # KNOW THIS: F-test comparing nested models
+summary(ur)$fstatistic           # overall-significance F
 
 ## ================= PROBLEMS (your turn) =========================
-## wage-hat = 0.6 - 1.8*female + 0.51*educ
-b0 <- 0.6
-d0 <- -1.8
-b1 <- 0.51
-male_12   <- ______   # (a) male,   educ=12   (hint: b0 + d0*0 + b1*12)
-female_12 <- ______   # (b) female, educ=12   (hint: b0 + d0*1 + b1*12)
-## (c) The gap = female_12 - male_12. Does it depend on educ? (comment)  ANSWER:
+## SSR_r = 198, SSR_ur = 183, q = 3 restrictions, df = n-k-1 = 347
+SSR_r <- 198
+SSR_ur <- 183
+q <- 3
+df <- 347
+Fstat <- ______   # (a) F  (hint: ((SSR_r - SSR_ur)/q) / (SSR_ur/df))
+## (b) c = qf(0.95, 3, 347) ~ 2.63.  Reject H0 (do the 3 variables jointly matter)?  ANSWER:

@@ -5,24 +5,22 @@
 ## SAVE your work -> commit + push D15.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 15 STARTER  |  The multiple regression model
+## ECN 377 - Day 15 STARTER  |  Assumptions, unbiasedness, omitted-variable bias
 ## ------------------------------------------------------------------
-## Add variables with + in the formula. Each slope holds the OTHERS fixed.
-## Fill the TODO, then COMMIT + PUSH.
+## An omitted variable biases OLS if it (1) affects Y AND (2) is correlated with X.
+## Fill the comments, then upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
-data("wage1")
+data("meap93")
 
-## ---- Demo: two variables at once ----
-## What you're learning: the educ slope now holds experience fixed (ceteris paribus).
-reg <- lm(wage ~ educ + exper, data = wage1)   # KNOW THIS: add a control with +
-reg$coefficients                                # intercept, educ, exper
+## ---- Demo: OVB in the wild ----
+## What you're learning: a "wrong sign" often means a confounder, not a real effect.
+lm(math10 ~ lnchprg, data = meap93)$coefficients   # 32.14 and -0.319 (negative!)
+## The negative slope does NOT mean free lunch lowers scores -- poverty drives both.
 
 ## ================= PROBLEMS (your turn) =========================
-## wage-hat = b0 + 0.6*educ + 0.07*exper
-b1 <- 0.6
-b2 <- 0.07
-d_educ  <- ______   # (a) +1 year educ, exper fixed   (hint: b1*1 + b2*0)
-d_exper <- ______   # (b) +1 year exper, educ fixed    (hint: b1*0 + b2*1)
-d_both  <- ______   # (c) +1 year of BOTH              (hint: b1*1 + b2*1)
+## Model: wage = b0 + b1*educ + U, with ability hiding in U.
+## (a) Does ability (1) affect wage? (2) correlate with educ?   ANSWER:
+## (b) Is the educ slope biased up or down? (Table 3.2)          ANSWER:
+## (c) Which assumption fails?                                   ANSWER:

@@ -5,22 +5,26 @@
 ## SAVE your work -> commit + push D18.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 18 STARTER  |  Sampling variance & standard errors
+## ECN 377 - Day 18 STARTER  |  Omitted-variable bias: SLR vs MLR, formula 3.23
 ## ------------------------------------------------------------------
-## The "Std. Error" column of summary() is se(beta-hat): how much beta-hat wobbles.
-## Fill the comments, then COMMIT + PUSH.
+## SLR slope = MLR slope + (effect of omitted var) * (its correlation with X).
+## Fill the TODO, then upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
-data("wage1")
+data("gpa1")
 
-## ---- Demo: read the standard errors ----
-## What you're learning: precision lives in the se, not the estimate.
-reg <- lm(wage ~ educ + exper, data = wage1)
-summary(reg)$coefficients        # Estimate | Std. Error | t value | Pr(>|t|)
+## ---- Demo: the bias, live (Example 3.3) ----
+b_slr <- lm(colGPA ~ ACT, data = gpa1)$coefficients["ACT"]        # SLR: ~0.0271
+mlr   <- lm(colGPA ~ ACT + hsGPA, data = gpa1)$coefficients
+b_mlr <- mlr["ACT"]
+b2 <- mlr["hsGPA"]   # MLR: 0.0094, 0.453
+d1    <- lm(hsGPA ~ ACT, data = gpa1)$coefficients["ACT"]         # delta1: ~0.0389
+
+## formula (3.23): SLR slope = MLR slope + b2 * delta1
+c(SLR = b_slr, check = b_mlr + b2 * d1)                           # both ~ 0.0271
 
 ## ================= PROBLEMS (your turn) =========================
-## Var(beta1-hat) = sigma^2 / SST_X.  Up or down?
-## (a) error variance sigma^2 rises          ANSWER:
-## (b) sample size n grows (SST_X grows)      ANSWER:
-## (c) X barely varies (everyone similar X)   ANSWER:
+## (a) b2 > 0 and delta1 > 0: SLR slope biased up or down?   ANSWER:
+## (b) b2 > 0 and delta1 < 0: which way?                     ANSWER:
+## (c) When is there NO omitted-variable bias?               ANSWER:

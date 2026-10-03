@@ -5,27 +5,24 @@
 ## SAVE your work -> commit + push D28.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 28 STARTER  |  Course review
+## ECN 377 - Day 28 STARTER  |  Synthesis + AI audit
 ## ------------------------------------------------------------------
-## Mixed practice for the comprehensive final. Fill the blanks, then check the key.
+## Run one full analysis, read it carefully, then correct the AI's four mistakes.
+## Fill the comments, then upload to GitHub.
 ## ------------------------------------------------------------------
 
-## (a) log(wage)-hat = 0.30 + 0.09*educ -- interpret the slope in %:
-##     ANSWER (comment):
+library(wooldridge)
+data("wage1")
 
-## (b) SST = 500, SSR = 350
-R2 <- ______        # 1 - SSR/SST
+## ---- The full analysis ----
+## What you're learning: the skill is READING a regression, not running it.
+reg <- lm(log(wage) ~ educ + exper + female, data = wage1)
+summary(reg)      # estimates, se, t, p-values, overall F
+confint(reg)      # 95% CIs
 
-## (c) beta-hat = 0.4, se = 0.1
-bhat <- 0.4
-se <- 0.1
-tstat <- ______     # bhat/se
-##     Reject H0: beta=0 at 5% (two-sided, c=2)?  ANSWER (comment):
-
-## (d) 95% CI for (c) using c = 2
-lower <- ______     # bhat - 2*se
-upper <- ______     # bhat + 2*se
-##     Is 0 inside?  ANSWER (comment):
-
-## (e) wage-hat = 0.6 - 1.8*female + 0.5*educ -- the c.p. wage gap:
-gap <- ______       # the female coefficient
+## ================= AUDIT THE AI (your turn) =========================
+## The chatbot made FOUR errors. Write the correction for each (one line):
+## (1) "educ coef 0.09 => +$0.09/hr per year":   CORRECTION:
+## (2) "female is negative => being female CAUSES lower pay":  CORRECTION:
+## (3) "the p-value on exper tests whether it equals 1":  CORRECTION:
+## (4) "R^2 ~ 0.30, so the model is useless":  CORRECTION:

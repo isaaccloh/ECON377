@@ -5,27 +5,25 @@
 ## SAVE your work -> commit + push D23.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 23 STARTER  |  The F-test (joint significance)
+## ECN 377 - Day 23 STARTER  |  Confidence intervals
 ## ------------------------------------------------------------------
-## F-test asks whether a GROUP of variables jointly matters.
-## anova(restricted, full) does it.  Fill the TODO, then COMMIT + PUSH.
+## CI = beta-hat +/- c * se.  "a inside the CI"  =  fail to reject H0: beta = a.
+## Fill the TODO, then upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
-data("mlb1")
+data("rdchem")
 
-## ---- Demo: do batting stats jointly matter? ----
-## What you're learning: variables weak on their own t-tests can matter as a group.
-ur <- lm(log(salary) ~ years + gamesyr + bavg + hrunsyr + rbisyr, data = mlb1)  # full
-r  <- lm(log(salary) ~ years + gamesyr, data = mlb1)                             # drop 3 stats
-anova(r, ur)                     # KNOW THIS: F-test comparing nested models
-summary(ur)$fstatistic           # overall-significance F
+## ---- Demo: confint() and the CI-test duality ----
+reg <- lm(log(rd) ~ log(sales) + profmarg, data = rdchem)
+confint(reg, level = 0.95)      # KNOW THIS: 95% CI for each coefficient
+## Is 1 inside the log(sales) CI? If yes, fail to reject H0: elasticity = 1 at 5%.
 
 ## ================= PROBLEMS (your turn) =========================
-## SSR_r = 198, SSR_ur = 183, q = 3 restrictions, df = n-k-1 = 347
-SSR_r <- 198
-SSR_ur <- 183
-q <- 3
-df <- 347
-Fstat <- ______   # (a) F  (hint: ((SSR_r - SSR_ur)/q) / (SSR_ur/df))
-## (b) c = qf(0.95, 3, 347) ~ 2.63.  Reject H0 (do the 3 variables jointly matter)?  ANSWER:
+## beta-hat = 0.30, se = 0.10, use c = 1.96 for a 95% CI
+bhat <- 0.30
+se <- 0.10
+c <- 1.96
+lower <- ______   # (a) lower bound   (hint: bhat - c*se)
+upper <- ______   # (b) upper bound   (hint: bhat + c*se)
+## (c) Is 0 inside [lower, upper]? Do we reject H0: beta = 0 at 5%?   ANSWER:

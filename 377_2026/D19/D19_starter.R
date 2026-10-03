@@ -5,26 +5,22 @@
 ## SAVE your work -> commit + push D19.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 19 STARTER  |  Gauss-Markov, normality, the t-statistic
+## ECN 377 - Day 19 STARTER  |  Sampling variance & standard errors
 ## ------------------------------------------------------------------
-## The t-statistic = estimate / se = "how many standard errors from zero."
-## Fill the TODO, then COMMIT + PUSH.
+## The "Std. Error" column of summary() is se(beta-hat): how much beta-hat wobbles.
+## Fill the comments, then upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
 data("wage1")
 
-## ---- Demo: the t-statistic ----
-## What you're learning: the "t value" column is beta-hat / se.
-reg <- lm(wage ~ educ, data = wage1)
-s <- summary(reg)$coefficients
-s                                        # Estimate | Std. Error | t value | Pr(>|t|)
-s[, "Estimate"] / s[, "Std. Error"]      # = the "t value" column
+## ---- Demo: read the standard errors ----
+## What you're learning: precision lives in the se, not the estimate.
+reg <- lm(wage ~ educ + exper, data = wage1)
+summary(reg)$coefficients        # Estimate | Std. Error | t value | Pr(>|t|)
 
 ## ================= PROBLEMS (your turn) =========================
-## An estimate beta-hat = 0.54 with se = 0.05.
-bhat <- 0.54
-se <- 0.05
-tstat <- ______   # (a) t = beta-hat / se   (hint: bhat/se)
-## (b) Is |t| big (far from 0)?              ANSWER:
-## (c) What null hypothesis does this t test? ANSWER:
+## Var(beta1-hat) = sigma^2 / SST_X.  Up or down?
+## (a) error variance sigma^2 rises          ANSWER:
+## (b) sample size n grows (SST_X grows)      ANSWER:
+## (c) X barely varies (everyone similar X)   ANSWER:

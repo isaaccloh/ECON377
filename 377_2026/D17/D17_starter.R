@@ -5,26 +5,27 @@
 ## SAVE your work -> commit + push D17.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 17 STARTER  |  Omitted-variable bias: SLR vs MLR, formula 3.23
+## ECN 377 - Day 17 STARTER  |  MLR examples & interpretation
 ## ------------------------------------------------------------------
-## SLR slope = MLR slope + (effect of omitted var) * (its correlation with X).
-## Fill the TODO, then COMMIT + PUSH.
+## The notes' Examples 3.1 (gpa1) and 3.2 (wage1).  Fill the TODO, upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
+
+## ---- Demo: Example 3.1 (college GPA) ----
+## What you're learning: each slope is a ceteris-paribus effect.
 data("gpa1")
+lm(colGPA ~ hsGPA + ACT, data = gpa1)$coefficients        # 1.29, 0.45, 0.0094
 
-## ---- Demo: the bias, live (Example 3.3) ----
-b_slr <- lm(colGPA ~ ACT, data = gpa1)$coefficients["ACT"]        # SLR: ~0.0271
-mlr   <- lm(colGPA ~ ACT + hsGPA, data = gpa1)$coefficients
-b_mlr <- mlr["ACT"]
-b2 <- mlr["hsGPA"]   # MLR: 0.0094, 0.453
-d1    <- lm(hsGPA ~ ACT, data = gpa1)$coefficients["ACT"]         # delta1: ~0.0389
-
-## formula (3.23): SLR slope = MLR slope + b2 * delta1
-c(SLR = b_slr, check = b_mlr + b2 * d1)                           # both ~ 0.0271
+## ---- Demo: Example 3.2 (log-wage) ----
+data("wage1")
+lm(log(wage) ~ educ + exper + tenure, data = wage1)$coefficients   # 0.28, 0.092, 0.0041, 0.022
 
 ## ================= PROBLEMS (your turn) =========================
-## (a) b2 > 0 and delta1 > 0: SLR slope biased up or down?   ANSWER:
-## (b) b2 > 0 and delta1 < 0: which way?                     ANSWER:
-## (c) When is there NO omitted-variable bias?               ANSWER:
+## colGPA-hat = 1.29 + 0.45*hsGPA + 0.0094*ACT
+b0 <- 1.29
+b1 <- 0.45
+b2 <- 0.0094
+pred     <- ______   # (a) colGPA at hsGPA=3.5, ACT=24   (hint: b0 + b1*3.5 + b2*24)
+eff_hsGPA <- ______  # (b) +1 hsGPA, ACT fixed            (hint: b1)
+eff_ACT10 <- ______  # (c) +10 ACT, hsGPA fixed           (hint: b2*10)

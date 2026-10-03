@@ -5,28 +5,25 @@
 ## SAVE your work -> commit + push D21.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 21 STARTER  |  Two-sided t-tests & p-values
+## ECN 377 - Day 21 STARTER  |  One-sided t-tests
 ## ------------------------------------------------------------------
-## Two-sided: reject if |t| > c.  The Pr(>|t|) column is the p-value for H0: beta = 0.
-## Fill the comments, then COMMIT + PUSH.
+## H1: beta > 0.  Reject H0 if  t > c,  where c = qt(1 - alpha, df).
+## Fill the TODO, then upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
+data("wage1")
 
-## ---- Demo: p-values straight from summary() ----
-data("gpa1")
-summary(lm(colGPA ~ hsGPA + ACT + skipped, data = gpa1))$coefficients   # t and Pr(>|t|)
-
-## ---- Demo: test H0: beta = 1 by hand ----
-data("campus")
-reg  <- lm(log(crime) ~ log(enroll), data = campus)
-s    <- summary(reg)$coefficients
-tval <- (s["log(enroll)", "Estimate"] - 1) / s["log(enroll)", "Std. Error"]
-pval <- 2 * (1 - pt(abs(tval), df = reg$df.residual))
-c(tval = tval, pval = pval)
+## ---- Demo: is the return to experience positive? (Example 4.1) ----
+reg <- lm(log(wage) ~ educ + exper + tenure, data = wage1)
+s <- summary(reg)$coefficients
+t_exper <- s["exper", "t value"]        # t-stat for exper
+c_05    <- qt(0.95, df = reg$df.residual)   # 5% one-sided critical value
+c(t_exper = t_exper, c_05 = c_05)       # t > c  =>  reject H0
 
 ## ================= PROBLEMS (your turn) =========================
-## H0: beta = 0 vs H1: beta != 0, alpha = 0.05, c = 1.98
-## (a) t = -3.2 : reject? (use |t|)                 ANSWER:
-## (b) p = 0.03 : reject at 0.05? at 0.01?           ANSWER:
-## (c) In one sentence: what does p = 0.03 mean?     ANSWER:
+## H0: beta = 0 vs H1: beta > 0, alpha = 0.05, critical value c = 1.68
+c <- 1.68
+## (a) t = 2.4 : reject or fail to reject?   ANSWER:
+## (b) t = 0.9 :                              ANSWER:
+## (c) t = -3.0 (with H1: beta > 0) :         ANSWER:

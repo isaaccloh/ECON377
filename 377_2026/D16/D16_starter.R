@@ -5,27 +5,24 @@
 ## SAVE your work -> commit + push D16.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 16 STARTER  |  MLR examples & interpretation
+## ECN 377 - Day 16 STARTER  |  The multiple regression model
 ## ------------------------------------------------------------------
-## The notes' Examples 3.1 (gpa1) and 3.2 (wage1).  Fill the TODO, commit + push.
+## Add variables with + in the formula. Each slope holds the OTHERS fixed.
+## Fill the TODO, then upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
-
-## ---- Demo: Example 3.1 (college GPA) ----
-## What you're learning: each slope is a ceteris-paribus effect.
-data("gpa1")
-lm(colGPA ~ hsGPA + ACT, data = gpa1)$coefficients        # 1.29, 0.45, 0.0094
-
-## ---- Demo: Example 3.2 (log-wage) ----
 data("wage1")
-lm(log(wage) ~ educ + exper + tenure, data = wage1)$coefficients   # 0.28, 0.092, 0.0041, 0.022
+
+## ---- Demo: two variables at once ----
+## What you're learning: the educ slope now holds experience fixed (ceteris paribus).
+reg <- lm(wage ~ educ + exper, data = wage1)   # KNOW THIS: add a control with +
+reg$coefficients                                # intercept, educ, exper
 
 ## ================= PROBLEMS (your turn) =========================
-## colGPA-hat = 1.29 + 0.45*hsGPA + 0.0094*ACT
-b0 <- 1.29
-b1 <- 0.45
-b2 <- 0.0094
-pred     <- ______   # (a) colGPA at hsGPA=3.5, ACT=24   (hint: b0 + b1*3.5 + b2*24)
-eff_hsGPA <- ______  # (b) +1 hsGPA, ACT fixed            (hint: b1)
-eff_ACT10 <- ______  # (c) +10 ACT, hsGPA fixed           (hint: b2*10)
+## wage-hat = b0 + 0.6*educ + 0.07*exper
+b1 <- 0.6
+b2 <- 0.07
+d_educ  <- ______   # (a) +1 year educ, exper fixed   (hint: b1*1 + b2*0)
+d_exper <- ______   # (b) +1 year exper, educ fixed    (hint: b1*0 + b2*1)
+d_both  <- ______   # (c) +1 year of BOTH              (hint: b1*1 + b2*1)
