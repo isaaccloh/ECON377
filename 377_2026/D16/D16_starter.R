@@ -79,4 +79,22 @@ mean(b1wide)                                    # still ~ 2: still unbiased
 sd(b1wide)                                      # wider: doubling sigma doubles the spread...
 sigma / sqrt(SST_x)                             # ...exactly as Theorem 2.2 predicts
 ## Same center, wider spread: more noise in U makes beta1 harder to pin down.
-## Bonus: spread x out (x <- runif(n, 0, 20), then rerun from SST_x) and watch sd shrink.
+
+## ---- 4. Play with n: a bigger sample ----
+## More observations means more total variation in x (SST_x grows), so b1-hat is pinned down better.
+sigma <- 3                                      # back to the original noise
+n <- 80                                         # try 5, 20, 80, 320 and rerun this section
+x <- runif(n, min = 0, max = 10)                # new x values for the new sample size
+SST_x <- sum((x - mean(x))^2)
+b1big <- numeric(reps)
+for (r in 1:reps) {
+  y <- draw_y(sigma)
+  b1big[r] <- lm(y ~ x)$coefficients[2]
+}
+hist(b1big, breaks = 30, xlim = c(-0.5, 4.5), col = "steelblue",
+     main = paste0("1000 values of b1-hat (sigma = 3, n = ", n, ")"), xlab = "b1-hat")
+abline(v = beta1, col = "red", lwd = 3)
+mean(b1big)                                     # still ~ 2: unbiased at any n
+sd(b1big)                                       # about half of section 2's: 4 times the data, half the spread
+sigma / sqrt(SST_x)                             # Theorem 2.2 again
+## Bonus: spread x out instead (x <- runif(n, 0, 20)), recompute SST_x, rerun, and watch sd shrink.
