@@ -7,7 +7,7 @@
 
 ## ECN 377 - Day 17 STARTER  |  MLR mechanics, examples & interpretation
 ## ------------------------------------------------------------------
-## Two variables at once (wage1), then the notes' Examples 3.1 (gpa1) and 3.2 (wage1).
+## Two variables at once (wage1): slopes and a prediction, then the notes' Examples 3.1 (gpa1) and 3.2 (wage1).
 ## Fill each ______, then upload to GitHub.
 ## ------------------------------------------------------------------
 
@@ -18,6 +18,8 @@ library(wooldridge)
 data("wage1")
 reg <- lm(wage ~ educ + exper, data = wage1)   # KNOW THIS: add a control with +
 reg$coefficients                                # intercept, educ, exper
+b <- reg$coefficients
+pred_w <- ______                                # predicted wage at educ = 12, exper = 10   (hint: b[[1]] + b[[2]]*12 + b[[3]]*10, as in SLR)
 
 ## ---- Demo: Example 3.1 (college GPA) ----
 ## What you're learning: each slope is a ceteris-paribus effect.
