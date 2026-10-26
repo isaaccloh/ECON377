@@ -5,22 +5,44 @@
 ## SAVE your work -> commit + push D19.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 19 STARTER  |  Sampling variance & standard errors
+## ECN 377 - Day 19 STARTER  |  Example 3.1;  omitted-variable bias (3.23);  sampling variance & standard errors
 ## ------------------------------------------------------------------
-## The "Std. Error" column of summary() is se(beta-hat): how much beta-hat wobbles.
-## Fill the comments, then upload to GitHub.
+## Type the examples along with class. Fill each ______ and ANSWER in the problems, then upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
-data("wage1")
+
+## ---- Example 3.1 (gpa1): colGPA on hsGPA and ACT ----
+## regress; change in colGPA-hat from +10 ACT, hsGPA fixed
+
+
+## compare: the SLR of colGPA on ACT
+
+
+## the regression plane (first time only, in the Console: install.packages(c("car", "rgl")); Mac: rgl also needs XQuartz)
+library(car)
+scatter3d(colGPA ~ hsGPA + ACT, data = gpa1, fit = "linear")   # drag to rotate, scroll to zoom
+
+## ---- Omitted-variable bias (Example 3.3, gpa1) ----
+## delta1: regress hsGPA (omitted) on ACT (included)
+
+
+## check (3.23): SLR slope = MLR slope + (hsGPA slope) * delta1
+
 
 ## ---- Demo: read the standard errors ----
 ## What you're learning: precision lives in the se, not the estimate.
+data("wage1")
 reg <- lm(wage ~ educ + exper, data = wage1)
 summary(reg)$coefficients        # Estimate | Std. Error | t value | Pr(>|t|)
 
 ## ================= PROBLEMS (your turn) =========================
+## (a) colGPA-hat = 1.29 + 0.453*hsGPA + 0.0094*ACT
+pred_a <- ______    # (a) colGPA at hsGPA = 3.0, ACT = 30   (hint: 1.29 + 0.453*3.0 + 0.0094*30)
+## (b) b2 > 0 and delta1 > 0: SLR slope biased up or down?   ANSWER:
+## (c) b2 > 0 and delta1 < 0: which way?                     ANSWER:
+## (d) When is there NO omitted-variable bias?               ANSWER:
 ## Var(beta1-hat) = sigma^2 / SST_X.  Up or down?
-## (a) error variance sigma^2 rises          ANSWER:
-## (b) sample size n grows (SST_X grows)      ANSWER:
-## (c) X barely varies (everyone similar X)   ANSWER:
+## (e) error variance sigma^2 rises          ANSWER:
+## (f) sample size n grows (SST_X grows)      ANSWER:
+## (g) X barely varies (everyone similar X)   ANSWER:
