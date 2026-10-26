@@ -29,8 +29,9 @@ library(wooldridge)
 ## compare: the SLR of colGPA on ACT
 
 
-## the regression plane: scatter3d() from car   (first time only: install.packages(c("car", "rgl")))
-
+## the regression plane (first time only, in the Console: install.packages(c("car", "rgl")); Mac: rgl also needs XQuartz)
+library(car)
+scatter3d(colGPA ~ hsGPA + ACT, data = gpa1, fit = "linear")   # drag to rotate, scroll to zoom
 
 ## ---- Omitted-variable bias (Example 3.3, gpa1) ----
 ## delta1: regress hsGPA (omitted) on ACT (included)
