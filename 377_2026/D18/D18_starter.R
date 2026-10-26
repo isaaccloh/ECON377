@@ -5,54 +5,45 @@
 ## SAVE your work -> commit + push D18.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 18 STARTER  |  MLR Examples 3.1-3.2;  omitted-variable bias (3.23)
+## ECN 377 - Day 18 STARTER  |  MLR Examples 3.2 and 3.1;  omitted-variable bias (3.23)
 ## ------------------------------------------------------------------
-## Examples 3.1 (gpa1) and 3.2 (wage1), carried over from Day 17. Then OVB:
-## SLR slope = MLR slope + (effect of omitted var) * (its correlation with X).
-## Fill each ______, then upload to GitHub.
+## Type the examples along with class. Fill each ______ in the problems, then upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
 
-## ---- Example 3.1: college GPA on high-school GPA and ACT ----
-## What you're learning: each slope is a ceteris-paribus effect, and Y-hat is the prediction.
-data("gpa1")
-reg1 <- ______                                      # KNOW THIS: regress colGPA on hsGPA and ACT (add variables with +)
-b <- reg1$coefficients                              # 1.29, 0.45, 0.0094
-pred1 <- ______                                     # Y-hat at hsGPA = 3.5, ACT = 24   (hint: b[[1]] + b[[2]]*3.5 + b[[3]]*24)
-chg_ACT <- ______                                   # +10 ACT points, hsGPA fixed      (hint: b[[3]] * 10)
-lm(colGPA ~ ACT, data = gpa1)$coefficients          # SLR: the ACT slope is much bigger without hsGPA
+## ---- Example 3.2 (wage1): log(wage) on educ, exper, tenure ----
+## regress, then save the coefficients
 
-## ---- Demo: see the regression PLANE (Example 3.1) ----
-## What you're learning: with two X's, OLS fits a plane instead of a line. Y-hat is the plane's height.
-## First time only, in the Console:  install.packages(c("car", "rgl"))   (Mac: rgl also needs XQuartz)
-library(car)
-scatter3d(colGPA ~ hsGPA + ACT, data = gpa1, fit = "linear")   # drag to rotate, scroll to zoom
 
-## ---- Example 3.2: log-wage on educ, exper, tenure ----
-## What you're learning: predict log(wage), then exp() back to dollars.
-data("wage1")
-reg2 <- lm(log(wage) ~ educ + exper + tenure, data = wage1)
-b <- reg2$coefficients                              # 0.28, 0.092, 0.0041, 0.022
-exp(b[[1]] + b[[2]] * 16 + b[[3]] * 4 + b[[4]] * 2) # wage-hat ($) at educ=16, exper=4, tenure=2 (~6.16)
-pct_educ <- ______                                  # % change in wage from +1 year educ   (hint: 100 * b[[2]])
+## predict wage at educ = 16, exper = 4, tenure = 2 (remember exp())
 
-## ---- Demo: the bias, live (Example 3.3) ----
-data("gpa1")
-b_slr <- lm(colGPA ~ ACT, data = gpa1)$coefficients["ACT"]        # SLR: ~0.0271
-mlr   <- lm(colGPA ~ ACT + hsGPA, data = gpa1)$coefficients
-b_mlr <- mlr["ACT"]
-b2 <- mlr["hsGPA"]   # MLR: 0.0094, 0.453
-d1    <- lm(hsGPA ~ ACT, data = gpa1)$coefficients["ACT"]         # delta1: ~0.0389
 
-## formula (3.23): SLR slope = MLR slope + b2 * delta1
-c(SLR = b_slr, check = b_mlr + b2 * d1)                           # both ~ 0.0271
+## % change in wage: +1 year educ; +1 exper and +1 tenure
+
+
+## ---- Example 3.1 (gpa1): colGPA on hsGPA and ACT ----
+## regress; change in colGPA-hat from +10 ACT, hsGPA fixed
+
+
+## compare: the SLR of colGPA on ACT
+
+
+## the regression plane: scatter3d() from car   (first time only: install.packages(c("car", "rgl")))
+
+
+## ---- Omitted-variable bias (Example 3.3, gpa1) ----
+## delta1: regress hsGPA (omitted) on ACT (included)
+
+
+## check (3.23): SLR slope = MLR slope + (hsGPA slope) * delta1
+
 
 ## ================= PROBLEMS (your turn) =========================
-## (a) colGPA-hat = 1.29 + 0.45*hsGPA + 0.0094*ACT
-pred_a <- ______    # (a) colGPA at hsGPA = 3.0, ACT = 30   (hint: 1.29 + 0.45*3.0 + 0.0094*30)
-## (b) log(wage)-hat = 0.28 + 0.092*educ + 0.0041*exper + 0.022*tenure
-pct_b <- ______     # (b) % change in wage from +4 years educ, exper and tenure fixed   (hint: 100 * 0.092 * 4)
+## (a) log(wage)-hat = 0.28 + 0.092*educ + 0.0041*exper + 0.022*tenure
+pct_a <- ______     # (a) % change in wage from +4 years educ, exper and tenure fixed   (hint: 100 * 0.092 * 4)
+## (b) colGPA-hat = 1.29 + 0.453*hsGPA + 0.0094*ACT
+pred_b <- ______    # (b) colGPA at hsGPA = 3.0, ACT = 30   (hint: 1.29 + 0.453*3.0 + 0.0094*30)
 ## (c) b2 > 0 and delta1 > 0: SLR slope biased up or down?   ANSWER:
 ## (d) b2 > 0 and delta1 < 0: which way?                     ANSWER:
 ## (e) When is there NO omitted-variable bias?               ANSWER:
