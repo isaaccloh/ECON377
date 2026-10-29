@@ -7,7 +7,7 @@
 
 ## ECN 377 - Day 19 STARTER  |  Example 3.1;  omitted-variable bias (3.23)
 ## ------------------------------------------------------------------
-## Type the examples along with class. Fill each ______ and ANSWER in the problems, then upload to GitHub.
+## Type the examples along with class. Fill the ______ in the problem, then upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
@@ -33,6 +33,3 @@ scatter3d(colGPA ~ ACT + hsGPA, data = gpa1, fit = "linear")   # drag to rotate:
 ## ================= PROBLEMS (your turn) =========================
 ## (a) colGPA-hat = 1.29 + 0.0094*ACT + 0.453*hsGPA
 pred_a <- ______    # (a) colGPA at ACT = 30, hsGPA = 3.0   (hint: 1.29 + 0.0094*30 + 0.453*3.0)
-## (b) b2 > 0 and delta1 > 0: SLR slope biased up or down?   ANSWER:
-## (c) b2 > 0 and delta1 < 0: which way?                     ANSWER:
-## (d) When is there NO omitted-variable bias?               ANSWER:
