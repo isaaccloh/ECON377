@@ -5,7 +5,7 @@
 ## SAVE your work -> commit + push D20.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 20 STARTER  |  Omitted-variable bias (Table 3.2);  variances & standard errors
+## ECN 377 - Day 20 STARTER  |  Omitted-variable bias (Table 3.2);  variances of the OLS estimators
 ## ------------------------------------------------------------------
 ## Omitted-variable bias = (effect of the omitted variable) x (its link to the included one).
 ## Fill each ______ and ANSWER, then upload to GitHub.
@@ -23,11 +23,6 @@ data("wage1")
 
 ## SLR: wage on educ (bigger or smaller educ slope?)
 
-
-## ---- Demo: read the standard errors ----
-## What you're learning: precision lives in the se, not the estimate.
-reg <- lm(wage ~ educ + exper, data = wage1)
-summary(reg)$coefficients        # Estimate | Std. Error | t value | Pr(>|t|)
 
 ## ================= PROBLEMS (your turn) =========================
 ## (a) b2 > 0 and delta1 > 0: SLR slope biased up or down?   ANSWER:

@@ -5,7 +5,7 @@
 ## SAVE your work -> commit + push D21.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 21 STARTER  |  Gauss-Markov, normality, the t-statistic
+## ECN 377 - Day 21 STARTER  |  Standard errors;  Gauss-Markov, normality, the t-statistic
 ## ------------------------------------------------------------------
 ## The t-statistic = estimate / se = "how many standard errors from zero."
 ## Fill each ______ and ANSWER, then upload to GitHub.
@@ -13,6 +13,11 @@
 
 library(wooldridge)
 data("wage1")
+
+## ---- Demo: read the standard errors ----
+## What you're learning: precision lives in the se, not the estimate.
+reg <- lm(wage ~ educ + exper, data = wage1)
+summary(reg)$coefficients        # Estimate | Std. Error | t value | Pr(>|t|)
 
 ## ---- Demo: the t-statistic ----
 ## What you're learning: the "t value" column is beta-hat / se.
