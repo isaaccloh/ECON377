@@ -14,10 +14,24 @@
 library(wooldridge)
 data("wage1")
 
-## ---- Demo: read the standard errors ----
-## What you're learning: precision lives in the se, not the estimate.
-reg <- lm(wage ~ educ + exper, data = wage1)
-summary(reg)$coefficients        # Estimate | Std. Error | t value | Pr(>|t|)
+## ---- A standard error by hand: se(educ) in wage ~ educ + exper ----
+## regress wage on educ and exper; find educ's "Std. Error" in summary()
+
+
+## df = n - K - 1   (n from nrow(); K = 2)
+
+
+## sigma-hat = sqrt(SSR / df)
+
+
+## SST_j for educ
+
+
+## R_j^2: regress educ on the other x, then take the R-squared
+
+
+## se(educ) = sigma-hat / sqrt(SST_j * (1 - R_j^2)); does it match summary()?
+
 
 ## ---- Demo: the t-statistic ----
 ## What you're learning: the "t value" column is beta-hat / se.
