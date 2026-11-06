@@ -5,7 +5,7 @@
 ## SAVE your work -> commit + push D21.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 21 STARTER  |  Estimating sigma^2;  standard errors
+## ECN 377 - Day 21 STARTER  |  Estimating sigma^2;  standard errors;  Gauss-Markov
 ## ------------------------------------------------------------------
 ## se(b_j) = sigma-hat / sqrt(SST_j * (1 - R_j^2)): every piece by hand, then check summary().
 ## Type along with class, then upload to GitHub.

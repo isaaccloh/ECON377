@@ -5,7 +5,7 @@
 ## SAVE your work -> commit + push D22.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 22 STARTER  |  Gauss-Markov, normality, the t-statistic;  one-sided t-tests
+## ECN 377 - Day 22 STARTER  |  Normality, the t-statistic;  one-sided t-tests
 ## ------------------------------------------------------------------
 ## The t-statistic = estimate / se = "how many standard errors from zero."
 ## The simulation DEMO at the end shows where the t distribution comes from.
