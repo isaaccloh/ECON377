@@ -45,59 +45,89 @@ c <- 1.68
 ## (f) t = -3.0 (with H1: beta > 0) :         ANSWER:
 
 ## ================= DEMO: from b1-hat to the t distribution =================
-## What you're learning: b1-hat varies from sample to sample (Theorem 4.1: it is normal around beta1).
-## Divide (b1-hat - beta1) by its sd and you get N(0,1). Divide by its se (estimated) and you get
-## a t distribution with df = n - K - 1 (Theorem 4.2): a bit wider, because the se is noisy too.
+## What you're learning: b1-hat changes from sample to sample. Its distribution is centered at the
+## truth and tightens as n grows. The t-statistic (b1-hat - beta1) / se does NOT tighten: it settles
+## on a t distribution with df = n - 2, which looks normal once n is large.
 ## Run it one section at a time.
 
 set.seed(377)
 beta0 <- 1          # TRUE intercept
-beta1 <- 2          # TRUE slope
-sigma <- 3          # sd of U
-n <- 5              # a SMALL sample, so t and normal look different (df = n - 2 = 3)
-x <- runif(n, min = 0, max = 10)      # the x values, held FIXED in every sample
-SST_x <- sum((x - mean(x))^2)
-sd_b1 <- sigma / sqrt(SST_x)          # the TRUE sd of b1-hat (Theorem 2.2)
+beta1 <- 2          # TRUE slope: the population line is y = 1 + 2x
+sigma <- 3          # sd of U (U is normal)
 
-## ---- 1. One sample: the data and its OLS line ----
-y <- beta0 + beta1 * x + rnorm(n, mean = 0, sd = sigma)
-reg <- lm(y ~ x)
-plot(x, y, main = "One sample and its OLS line")
-abline(reg, col = "blue", lwd = 2)                            # this sample's line
-abline(a = beta0, b = beta1, col = "red", lty = 2, lwd = 2)   # the TRUE line
-
-## ---- 2. This sample's estimate, its se, and its t ----
-b1 <- summary(reg)$coefficients[2, 1]       # b1-hat
-se <- summary(reg)$coefficients[2, 2]       # se(b1-hat): uses sigma-hat, not sigma
-c(b1hat = b1, se = se, sd = sd_b1)          # the se is only an ESTIMATE of the sd
-(b1 - beta1) / se                           # this sample's t
-
-## ---- 3. Repeat 5000 times: the sampling distribution of b1-hat ----
-reps <- 5000
-b1hat <- numeric(reps)
-se_b1 <- numeric(reps)
-for (r in 1:reps) {
-  y <- beta0 + beta1 * x + rnorm(n, mean = 0, sd = sigma)
-  s <- summary(lm(y ~ x))$coefficients
-  b1hat[r] <- s[2, 1]
-  se_b1[r] <- s[2, 2]
+## the experiment: draw a random sample of size n, run OLS; repeat reps times
+many <- function(n, reps = 5000) {
+  out <- matrix(NA, nrow = reps, ncol = 2)
+  for (r in 1:reps) {
+    x <- runif(n, min = 0, max = 10)
+    y <- beta0 + beta1 * x + rnorm(n, mean = 0, sd = sigma)
+    out[r, ] <- summary(lm(y ~ x))$coefficients[2, 1:2]
+  }
+  out               # column 1 = b1-hat, column 2 = se(b1-hat)
 }
-hist(b1hat, breaks = 40, col = "gray", main = "5000 values of b1-hat", xlab = "b1-hat")
-abline(v = beta1, col = "red", lwd = 3)     # centered at the truth (unbiased)
-c(mean = mean(b1hat), sd = sd(b1hat), theory = sd_b1)
+bins <- seq(-1, 5, by = 0.05)       # FIXED bins for every b1-hat histogram
+tbins <- seq(-5, 5, by = 0.2)       # FIXED bins for every t histogram
 
-## ---- 4. Normalize: divide by the sd vs. by the se ----
-z <- (b1hat - beta1) / sd_b1                # known sd    -> N(0,1)       (Theorem 4.1)
-t <- (b1hat - beta1) / se_b1                # estimated se -> t, df = n - 2 (Theorem 4.2)
-hist(t[abs(t) < 6], breaks = 48, freq = FALSE, col = "lightblue",      # drops the ~1% of extreme values
-     main = "(b1-hat - beta1) / se", xlab = "t")
-curve(dnorm(x), add = TRUE, lwd = 2, lty = 2)                  # N(0,1): too thin in the tails
-curve(dt(x, df = n - 2), add = TRUE, col = "red", lwd = 2)     # t with n - 2 df: fits
-legend("topright", c("N(0,1)", "t, df = n - 2"), lty = c(2, 1), col = c("black", "red"), lwd = 2)
-mean(abs(z) > 1.96)                         # ~ 0.05: 1.96 works when you KNOW the sd
-mean(abs(t) > 1.96)                         # ~ 0.14: too many "surprises" with the se
-mean(abs(t) > qt(0.975, df = n - 2))        # ~ 0.05: the t cutoff (3.18 with df = 3) fixes it
+## ---- 1. One random sample (n = 5) and the TRUE population line ----
+n <- 5
+x <- runif(n, min = 0, max = 10)
+y <- beta0 + beta1 * x + rnorm(n, mean = 0, sd = sigma)
+plot(x, y, xlim = c(0, 10), ylim = c(-10, 30), pch = 19, main = "One random sample, n = 5")
+abline(a = beta0, b = beta1, col = "red", lwd = 2)         # population line: E(y|x) = 1 + 2x
 
-## ---- 5. Play with n ----
-## Set n <- 30 at the top, rerun everything: the se gets accurate, the t looks normal, and qt(0.975, 28) = 2.05 is near 1.96.
+## ---- 2. Add this sample's OLS line ----
+reg <- lm(y ~ x)
+abline(reg, col = "blue", lwd = 2, lty = 2)                # OLS line: close, but not the truth
+legend("topleft", c("population line", "OLS line"), col = c("red", "blue"), lty = c(1, 2), lwd = 2)
+b1 <- reg$coefficients[2]
+b1
 
+## ---- 3. This one b1-hat on a histogram, with the truth in red ----
+hist(b1, breaks = bins, col = "gray", main = "One b1-hat, n = 5", xlab = "b1-hat")
+abline(v = beta1, col = "red", lwd = 3)
+
+## ---- 4. Repeat the experiment 5000 times ----
+b1hat <- many(5)[, 1]
+hist(b1hat[abs(b1hat - beta1) < 3], breaks = bins, col = "gray",     # drops the rare extreme values
+     main = "5000 values of b1-hat, n = 5", xlab = "b1-hat")
+abline(v = beta1, col = "red", lwd = 3)
+mean(b1hat)                                                # about 2: unbiased
+
+## ---- 5. Larger samples: same scale, the distribution concentrates at the truth ----
+par(mfrow = c(2, 2))
+for (n in c(5, 20, 100, 500)) {
+  b1hat <- many(n)[, 1]
+  hist(b1hat[abs(b1hat - beta1) < 3], breaks = bins, col = "gray",
+       main = paste("n =", n), xlab = "b1-hat")
+  abline(v = beta1, col = "red", lwd = 3)
+}
+par(mfrow = c(1, 1))
+
+## ---- 6. Back to our n = 5 sample: its t-statistic ----
+se <- summary(reg)$coefficients[2, 2]                      # se(b1-hat) from the same sample
+t1 <- (b1 - beta1) / se
+t1
+hist(t1, breaks = tbins, col = "lightblue", main = "One t, n = 5", xlab = "t")
+
+## ---- 7. Repeat 5000 times: the t distribution with df = n - 2 = 3 ----
+sims <- many(5)
+t <- (sims[, 1] - beta1) / sims[, 2]
+hist(t[abs(t) < 5], breaks = tbins, freq = FALSE, col = "lightblue",
+     main = "5000 values of t, n = 5", xlab = "t")
+curve(dnorm(x), add = TRUE, lty = 2, lwd = 2)              # N(0,1): too thin in the tails
+curve(dt(x, df = 3), add = TRUE, col = "red", lwd = 2)     # t with 3 df: fits
+legend("topright", c("N(0,1)", "t, df = n - 2"), col = c("black", "red"), lty = c(2, 1), lwd = 2)
+mean(abs(t) > 1.96)                                        # about 0.14: 1.96 is too small at n = 5
+mean(abs(t) > qt(0.975, df = 3))                           # about 0.05: the t cutoff works
+
+## ---- 8. Larger samples: t does NOT collapse; it settles on t(n - 2), then on N(0,1) ----
+par(mfrow = c(2, 2))
+for (n in c(5, 10, 30, 100)) {
+  sims <- many(n)
+  t <- (sims[, 1] - beta1) / sims[, 2]
+  hist(t[abs(t) < 5], breaks = tbins, freq = FALSE, ylim = c(0, 0.45), col = "lightblue",
+       main = paste0("n = ", n, ",  df = ", n - 2), xlab = "t")
+  curve(dnorm(x), add = TRUE, lty = 2, lwd = 2)
+  curve(dt(x, df = n - 2), add = TRUE, col = "red", lwd = 2)
+}
+par(mfrow = c(1, 1))
