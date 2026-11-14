@@ -5,24 +5,28 @@
 ## SAVE your work -> commit + push D28.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 28 STARTER  |  Synthesis + AI audit
+## ECN 377 - Day 28 STARTER  |  Dummy variables
 ## ------------------------------------------------------------------
-## Run one full analysis, read it carefully, then correct the AI's four mistakes.
-## Fill the comments, then upload to GitHub.
+## A dummy is a 0/1 column; its coefficient is the group difference (an intercept shift).
+## Fill the TODO, then upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
 data("wage1")
 
-## ---- The full analysis ----
-## What you're learning: the skill is READING a regression, not running it.
-reg <- lm(log(wage) ~ educ + exper + female, data = wage1)
-summary(reg)      # estimates, se, t, p-values, overall F
-confint(reg)      # 95% CIs
+## ---- Demo: the female wage gap ----
+## What you're learning: the female coefficient is the c.p. gap at EVERY education level.
+reg <- lm(wage ~ female + educ, data = wage1)
+reg$coefficients        # intercept, female (the gap), educ
 
-## ================= AUDIT THE AI (your turn) =========================
-## The chatbot made FOUR errors. Write the correction for each (one line):
-## (1) "educ coef 0.09 => +$0.09/hr per year":   CORRECTION:
-## (2) "female is negative => being female CAUSES lower pay":  CORRECTION:
-## (3) "the p-value on exper tests whether it equals 1":  CORRECTION:
-## (4) "R^2 ~ 0.30, so the model is useless":  CORRECTION:
+## many categories -> factor() makes the dummies and drops one base level:
+lm(wage ~ factor(numdep) + educ, data = wage1)$coefficients
+
+## ================= PROBLEMS (your turn) =========================
+## wage-hat = 0.6 - 1.8*female + 0.51*educ
+b0 <- 0.6
+d0 <- -1.8
+b1 <- 0.51
+male_12   <- ______   # (a) male,   educ=12   (hint: b0 + d0*0 + b1*12)
+female_12 <- ______   # (b) female, educ=12   (hint: b0 + d0*1 + b1*12)
+## (c) The gap = female_12 - male_12. Does it depend on educ? (comment)  ANSWER:
