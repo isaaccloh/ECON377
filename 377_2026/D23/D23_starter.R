@@ -16,12 +16,21 @@
 
 library(wooldridge)
 
-## ---- Demo: is the return to experience positive? (Example 4.1) ----
-## What you're learning: H1: beta > 0 uses the RIGHT tail.
+## ---- Refresher: se and t value with [row, column] ----
+## What you're learning: summary(reg)$coefficients is a table. One row per coefficient
+## (row 1 = intercept), columns 1 Estimate | 2 Std. Error | 3 t value | 4 Pr(>|t|).
 data("wage1")
 reg <- lm(log(wage) ~ educ + exper + tenure, data = wage1)
 s <- summary(reg)$coefficients
-t_exper <- s[3, 3]                         # row 3 = exper, column 3 = t value
+s                          # the whole table
+se_exper <- s[3, 2]        # row 3 = exper, column 2 = Std. Error
+t_exper <- s[3, 3]         # row 3 = exper, column 3 = t value
+se_exper
+t_exper
+s[3, 1] / s[3, 2]          # estimate / se: the same t value
+
+## ---- Demo: is the return to experience positive? (Example 4.1) ----
+## What you're learning: H1: beta > 0 uses the RIGHT tail. Same regression as the refresher.
 c_05 <- qt(0.95, df = reg$df.residual)     # 5% critical value
 c_01 <- qt(0.99, df = reg$df.residual)     # 1% critical value
 t_exper
