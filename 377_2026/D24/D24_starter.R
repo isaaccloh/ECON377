@@ -16,27 +16,26 @@
 
 library(wooldridge)
 
-## ---- Demo: is the return to experience positive? (Example 4.1) ----
-## What you're learning: H1: beta > 0 uses the RIGHT tail.
+## ---- Example 4.1: is the return to experience positive? ----
+## H0: beta = 0 vs H1: beta > 0 for exper
 data("wage1")
 reg <- lm(log(wage) ~ educ + exper + tenure, data = wage1)
 s <- summary(reg)$coefficients
-t_exper <- s[3, 3]                         # row 3 = exper, column 3 = t value
-c_05 <- qt(0.95, df = reg$df.residual)     # 5% critical value
-c_01 <- qt(0.99, df = reg$df.residual)     # 1% critical value
-t_exper
-c_05
-c_01
+s
+t_exper <- ______     # t value for exper   (hint: s[row, column])
+c_05 <- ______        # 5% critical value   (hint: df = reg$df.residual)
+c_01 <- ______        # 1% critical value
+## Reject H0 at 5%? At 1%?                    ANSWER:
 
-## ---- Demo: do larger schools do worse? (Example 4.2) ----
-## What you're learning: H1: beta < 0 uses the LEFT tail, so c is negative.
+## ---- Example 4.2: do larger schools do worse? ----
+## H0: beta = 0 vs H1: beta < 0 for enroll
 data("meap93")
 reg <- lm(math10 ~ totcomp + staff + enroll, data = meap93)
 s <- summary(reg)$coefficients
-t_enroll <- s[4, 3]                        # row 4 = enroll, column 3 = t value
-c_left <- qt(0.05, df = reg$df.residual)   # 5% critical value, left tail
-t_enroll
-c_left
+s
+t_enroll <- ______    # t value for enroll
+c_left <- ______      # 5% critical value   (hint: which tail?)
+## Reject H0 at 5%?                           ANSWER:
 
 ## ================= PROBLEMS (your turn) =========================
 ## H0: beta = 0 vs H1: beta > 0, alpha = 0.05, df = 40
