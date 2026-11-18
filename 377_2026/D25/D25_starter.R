@@ -5,37 +5,36 @@
 ## SAVE your work -> commit + push D25.R to your own econ377 repo (or upload it on github.com)
 ## ----------------------------------------------------------------
 
-## ECN 377 - Day 25 STARTER  |  One-sided tests (finish); two-sided tests; testing beta = a
+## ECN 377 - Day 25 STARTER  |  Two-sided tests; testing beta = a
 ## ------------------------------------------------------------------
-## H1: beta > 0   ->  reject H0 if t > c,    c = qt(1 - alpha, df)     (right tail)
-## H1: beta < 0   ->  reject H0 if t < c,    c = qt(alpha, df)         (left tail, c is negative)
-## H1: beta != 0  ->  reject H0 if |t| > c,  c = qt(1 - alpha/2, df)   (both tails)
+## H1: beta != 0  ->  reject H0 if |t| > c,  c = qt(1 - alpha/2, df)   (alpha/2 in EACH tail)
+## H0: beta = a   ->  t = (beta-hat - a) / se, then the same steps.
+## R's "t value" column always tests beta = 0.
 ## Fill each ______ and ANSWER, then upload to GitHub.
 ## ------------------------------------------------------------------
 
 library(wooldridge)
 
-## ---- Demo: is the return to experience positive? (Example 4.1) ----
-## What you're learning: H1: beta > 0 uses the RIGHT tail.
-data("wage1")
-reg <- lm(log(wage) ~ educ + exper + tenure, data = wage1)
-s <- summary(reg)$coefficients
-t_exper <- s[3, 3]                         # row 3 = exper, column 3 = t value
-c_05 <- qt(0.95, df = reg$df.residual)     # 5% critical value
-c_01 <- qt(0.99, df = reg$df.residual)     # 1% critical value
-t_exper
-c_05
-c_01
-
-## ---- Demo: do larger schools do worse? (Example 4.2) ----
-## What you're learning: H1: beta < 0 uses the LEFT tail, so c is negative.
+## ---- Warm-up: Example 4.2 in logs (one-sided, H1: beta < 0) ----
+## What you're learning: the log form gives a different conclusion than the level form.
 data("meap93")
-reg <- lm(math10 ~ totcomp + staff + enroll, data = meap93)
+reg <- lm(math10 ~ log(totcomp) + log(staff) + log(enroll), data = meap93)
 s <- summary(reg)$coefficients
-t_enroll <- s[4, 3]                        # row 4 = enroll, column 3 = t value
+t_enroll <- s[4, 3]                        # row 4 = log(enroll), column 3 = t value
 c_left <- qt(0.05, df = reg$df.residual)   # 5% critical value, left tail
 t_enroll
 c_left
+
+## ---- Demo: skipping class and ACT (Example 4.3, two-sided) ----
+## What you're learning: compare |t| with c = qt(1 - alpha/2, df).
+data("gpa1")
+reg <- lm(colGPA ~ hsGPA + ACT + skipped, data = gpa1)
+s <- summary(reg)$coefficients
+s
+c_two <- qt(0.975, df = reg$df.residual)   # 5% two-sided critical value
+c_two
+abs(s[4, 3])                               # row 4 = skipped
+abs(s[3, 3])                               # row 3 = ACT
 
 ## ---- Demo: test H0: beta = 1 by hand (Example 4.4) ----
 ## What you're learning: the "t value" column tests beta = 0 only. For beta = 1, rebuild t.
@@ -50,18 +49,21 @@ c_right
 c_two
 
 ## ================= PROBLEMS (your turn) =========================
-## H0: beta = 0 vs H1: beta > 0, alpha = 0.05, df = 40
-c1 <- ______   # (a) critical value   (hint: qt(1 - alpha, df = 40))
-## (b) t = 2.4 : reject or fail to reject?   ANSWER:
-##     t = 0.9 :                              ANSWER:
-##     t = -3.0 :                             ANSWER:
-
-## H0: beta = 0 vs H1: beta < 0, alpha = 0.05, df = 30
-c2 <- ______   # (c) critical value   (hint: qt(alpha, df = 30))
-## (c) Is c2 positive or negative?            ANSWER:
-## (d) t = -2.10 : reject?                    ANSWER:
-##     t = -1.20 : reject?                    ANSWER:
+## H0: beta = 0 vs H1: beta != 0, alpha = 0.05, df = 40
+c3 <- ______   # (a) critical value   (hint: qt(1 - alpha/2, df = 40))
+## (a) Is c3 bigger or smaller than the one-sided qt(0.95, df = 40) = 1.68? Why?   ANSWER:
 
 ## H0: beta = 0 vs H1: beta != 0, alpha = 0.05, c = 1.98
-## (e) t = -3.2 : reject? (use |t|)           ANSWER:
+## (b) t = -3.2 : reject? (use |t|)           ANSWER:
 ##     t = 1.5 : reject?                      ANSWER:
+
+## beta-hat = 0.8, se = 0.25. H0: beta = 1 vs H1: beta != 1, alpha = 0.05, use c = 2
+t_c <- ______   # (c) t-statistic   (hint: (beta-hat - 1) / se)
+## (c) Reject?                                ANSWER:
+
+## (d) Example 4.5 in R: is the price elasticity of nox equal to -1?
+data("hprice2")
+reg <- lm(log(price) ~ log(nox) + log(dist) + rooms + stratio, data = hprice2)
+s <- summary(reg)$coefficients
+t_nox <- ______   # t for H0: beta = -1   (hint: row 2; (estimate - (-1)) / se)
+## (d) With c = 1.96, reject H0: beta = -1?   ANSWER:
