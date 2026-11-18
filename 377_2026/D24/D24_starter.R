@@ -9,7 +9,7 @@
 ## ------------------------------------------------------------------
 ## H1: beta > 0   ->  reject H0 if t > c,    c = qt(1 - alpha, df)   (right tail)
 ## H1: beta < 0   ->  reject H0 if t < c,    c = qt(alpha, df)       (left tail, c is negative)
-## H1: beta != 0  ->  reject H0 if |t| > c   (both tails, alpha/2 in each; more on Day 25)
+## H1: beta != 0  ->  reject H0 if |t| > c,  c = qt(1 - alpha/2, df)   (alpha/2 in EACH tail)
 ## The DEMO at the end draws a two-sided test in pictures.
 ## Fill each ______ and ANSWER, then upload to GitHub.
 ## ------------------------------------------------------------------
